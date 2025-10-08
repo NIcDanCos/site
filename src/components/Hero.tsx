@@ -1,6 +1,26 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { EmailGateModal } from "@/components/EmailGateModal";
+import { useProjectAccess } from "@/hooks/useProjectAccess";
 
 const Hero = () => {
+  const [showEmailGate, setShowEmailGate] = useState(false);
+  const { isAuthenticated, grantProjectAccess } = useProjectAccess();
+
+  const handleViewWork = async () => {
+    if (!isAuthenticated) {
+      setShowEmailGate(true);
+      return;
+    }
+
+    // Grant access to demo project
+    const hasAccess = await grantProjectAccess('demo-project');
+    if (hasAccess) {
+      // TODO: Navigate to projects or open project demo
+      console.log('Access granted to view work');
+    }
+  };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated gradient background */}
@@ -51,6 +71,7 @@ const Hero = () => {
           <Button 
             variant="default" 
             size="lg"
+            onClick={handleViewWork}
             className="group relative overflow-hidden"
           >
             <span className="relative z-10">View Work</span>
@@ -74,6 +95,9 @@ const Hero = () => {
           backgroundSize: '50px 50px'
         }} />
       </div>
+
+      {/* Email Gate Modal */}
+      <EmailGateModal open={showEmailGate} onOpenChange={setShowEmailGate} />
     </div>
   );
 };
