@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { EmailGateModal } from "@/components/EmailGateModal";
+import { ContactModal } from "@/components/ContactModal";
 import { useProjectAccess } from "@/hooks/useProjectAccess";
 
 const Hero = () => {
   const [showEmailGate, setShowEmailGate] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
   const { isAuthenticated, grantProjectAccess } = useProjectAccess();
 
   const handleViewWork = async () => {
@@ -81,9 +83,11 @@ const Hero = () => {
           <Button 
             variant="outline" 
             size="lg"
-            className="border-primary text-primary hover:bg-primary/10"
+            onClick={() => setShowContactModal(true)}
+            className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10"
           >
-            Say Hello
+            <span className="relative z-10">Say Hello</span>
+            <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Button>
         </div>
       </div>
@@ -123,6 +127,9 @@ const Hero = () => {
 
       {/* Email Gate Modal */}
       <EmailGateModal open={showEmailGate} onOpenChange={setShowEmailGate} />
+      
+      {/* Contact Modal */}
+      <ContactModal open={showContactModal} onOpenChange={setShowContactModal} />
     </div>
   );
 };
