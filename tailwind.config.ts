@@ -96,6 +96,14 @@ export default {
           "0%, 100%": { opacity: "0.15" },
           "50%": { opacity: "0.25" },
         },
+        "wave-slow": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "wave-slower": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-33%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -104,6 +112,8 @@ export default {
         "gradient-shift": "gradient-shift 8s ease infinite",
         "cursor-blink": "cursor-blink 1s step-end infinite",
         "glow-pulse": "glow-pulse 4s ease-in-out infinite",
+        "wave-slow": "wave-slow 25s linear infinite",
+        "wave-slower": "wave-slower 30s linear infinite",
       },
     },
   },

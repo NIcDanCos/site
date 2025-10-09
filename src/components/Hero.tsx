@@ -88,12 +88,29 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Decorative grid lines */}
-      <div className="absolute inset-0 pointer-events-none opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+      {/* Subtle wave animation */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(0, 217, 255, 0.08)" />
+              <stop offset="50%" stopColor="rgba(139, 92, 246, 0.06)" />
+              <stop offset="100%" stopColor="rgba(0, 217, 255, 0.08)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,100 C150,120 350,80 500,100 C650,120 850,80 1000,100 C1150,120 1350,80 1500,100 C1650,120 1850,80 2000,100 L2000,0 L0,0 Z"
+            fill="url(#wave-gradient)"
+            opacity="0.1"
+            className="animate-wave-slow"
+          />
+          <path
+            d="M0,80 C200,100 400,60 600,80 C800,100 1000,60 1200,80 C1400,100 1600,60 1800,80 C2000,100 2200,60 2400,80 L2400,0 L0,0 Z"
+            fill="url(#wave-gradient)"
+            opacity="0.05"
+            className="animate-wave-slower"
+          />
+        </svg>
       </div>
 
       {/* Email Gate Modal */}
