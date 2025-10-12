@@ -12,13 +12,13 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative flex items-center justify-center overflow-hidden pt-14 sm:pt-16" style={{ minHeight: 'calc(100vh - 160px)' }}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in py-8">
         {/* Name with cursor */}
         <div className="mb-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-2">
