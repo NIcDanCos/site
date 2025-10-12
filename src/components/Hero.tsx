@@ -1,26 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { EmailGateModal } from "@/components/EmailGateModal";
 import { ContactModal } from "@/components/ContactModal";
-import { useProjectAccess } from "@/hooks/useProjectAccess";
 
 const Hero = () => {
-  const [showEmailGate, setShowEmailGate] = useState(false);
+  const navigate = useNavigate();
   const [showContactModal, setShowContactModal] = useState(false);
-  const { isAuthenticated, grantProjectAccess } = useProjectAccess();
 
-  const handleViewWork = async () => {
-    if (!isAuthenticated) {
-      setShowEmailGate(true);
-      return;
-    }
-
-    // Grant access to demo project
-    const hasAccess = await grantProjectAccess('demo-project');
-    if (hasAccess) {
-      // TODO: Navigate to projects or open project demo
-      console.log('Access granted to view work');
-    }
+  const handleViewWork = () => {
+    navigate('/projects');
   };
 
   return (
@@ -125,9 +113,6 @@ const Hero = () => {
         </svg>
       </div>
 
-      {/* Email Gate Modal */}
-      <EmailGateModal open={showEmailGate} onOpenChange={setShowEmailGate} />
-      
       {/* Contact Modal */}
       <ContactModal open={showContactModal} onOpenChange={setShowContactModal} />
     </div>
