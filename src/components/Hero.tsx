@@ -18,17 +18,17 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in py-8">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in py-4 sm:py-8">
         {/* Name with cursor */}
-        <div className="mb-8">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-2">
+        <div className="mb-12 sm:mb-8">
+          <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-2">
             <span className="text-foreground">Nic Dan Cos</span>
             <span className="text-primary animate-cursor-blink">_</span>
           </h1>
         </div>
 
         {/* Code-style role definition */}
-        <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-8 mb-12 text-left max-w-2xl mx-auto">
+        <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-12 text-left max-w-2xl mx-auto">
           <pre className="text-base md:text-lg">
             <code>
               <span className="text-accent">const</span>{" "}
