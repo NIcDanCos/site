@@ -1,36 +1,24 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { EmailGateModal } from "@/components/EmailGateModal";
 import { ContactModal } from "@/components/ContactModal";
-import { useProjectAccess } from "@/hooks/useProjectAccess";
 
 const Hero = () => {
-  const [showEmailGate, setShowEmailGate] = useState(false);
+  const navigate = useNavigate();
   const [showContactModal, setShowContactModal] = useState(false);
-  const { isAuthenticated, grantProjectAccess } = useProjectAccess();
 
-  const handleViewWork = async () => {
-    if (!isAuthenticated) {
-      setShowEmailGate(true);
-      return;
-    }
-
-    // Grant access to demo project
-    const hasAccess = await grantProjectAccess('demo-project');
-    if (hasAccess) {
-      // TODO: Navigate to projects or open project demo
-      console.log('Access granted to view work');
-    }
+  const handleViewWork = () => {
+    navigate('/projects');
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative flex items-center justify-center overflow-hidden pt-14 sm:pt-16" style={{ minHeight: 'calc(100vh - 160px)' }}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in py-8">
         {/* Name with cursor */}
         <div className="mb-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-2">
@@ -125,9 +113,6 @@ const Hero = () => {
         </svg>
       </div>
 
-      {/* Email Gate Modal */}
-      <EmailGateModal open={showEmailGate} onOpenChange={setShowEmailGate} />
-      
       {/* Contact Modal */}
       <ContactModal open={showContactModal} onOpenChange={setShowContactModal} />
     </div>
