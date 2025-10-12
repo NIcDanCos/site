@@ -12,15 +12,15 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center overflow-hidden pt-14 sm:pt-16" style={{ minHeight: 'calc(100vh - 160px)' }}>
+    <div className="relative flex items-center justify-center overflow-hidden pt-20 sm:pt-16" style={{ minHeight: 'calc(100vh - 160px)' }}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in py-4 sm:py-8">
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-6 text-center animate-fade-in py-4 sm:py-8">
         {/* Name with cursor */}
-        <div className="mb-12 sm:mb-8">
+        <div className="mb-6 sm:mb-8">
           <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-2">
             <span className="text-foreground">Nic Dan Cos</span>
             <span className="text-primary animate-cursor-blink">_</span>
@@ -28,7 +28,7 @@ const Hero = () => {
         </div>
 
         {/* Code-style role definition */}
-        <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-12 text-left max-w-2xl mx-auto">
+        <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-12 text-left w-full">
           <pre className="text-base md:text-lg">
             <code>
               <span className="text-accent">const</span>{" "}
@@ -57,12 +57,12 @@ const Hero = () => {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-row gap-3 justify-center items-center w-full">
           <Button 
             variant="default" 
             size="lg"
             onClick={handleViewWork}
-            className="group relative overflow-hidden"
+            className="group relative overflow-hidden flex-1"
           >
             <span className="relative z-10">View Work</span>
             <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -72,7 +72,7 @@ const Hero = () => {
             variant="outline" 
             size="lg"
             onClick={() => setShowContactModal(true)}
-            className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10"
+            className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10 flex-1"
           >
             <span className="relative z-10">Say Hello</span>
             <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
