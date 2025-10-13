@@ -20,8 +20,8 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-8" style={{ maxWidth: '680px' }}>
         {/* Name with cursor */}
-        <div className="mb-6 sm:mb-8">
-          <h1 className="text-5xl sm:text-4xl md:text-7xl font-bold tracking-tight mb-2">
+        <div className="mb-6 sm:mb-8 w-full">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-2 w-full text-center">
             <span className="text-foreground">Nic Dan Cos</span>
             <span className="text-primary animate-cursor-blink">_</span>
           </h1>
@@ -29,8 +29,8 @@ const Hero = () => {
 
         {/* Code-style role definition */}
         <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-12 text-left w-full">
-          <pre className="text-base md:text-lg">
-            <code>
+          <pre className="text-[13px] min-[375px]:text-base sm:text-lg break-words whitespace-pre-wrap">
+            <code className="break-words">
               <span className="text-accent">const</span>{" "}
               <span className="text-foreground">role</span>{" "}
               <span className="text-muted-foreground">=</span>{" "}
@@ -39,16 +39,16 @@ const Hero = () => {
               {"  "}
               <span className="text-primary">title</span>
               <span className="text-muted-foreground">:</span>{" "}
-              <span className="text-amber-400">"Full Stack Developer"</span>
+              <span className="text-amber-400 break-words">"Full Stack Developer"</span>
               <span className="text-muted-foreground">,</span>
               {"\n"}
               {"  "}
               <span className="text-primary">focus</span>
               <span className="text-muted-foreground">:</span>{" "}
               <span className="text-muted-foreground">{"["}</span>
-              <span className="text-amber-400">"React"</span>
+              <span className="text-amber-400 break-words">"React"</span>
               <span className="text-muted-foreground">,</span>{" "}
-              <span className="text-amber-400">"APIs"</span>
+              <span className="text-amber-400 break-words">"APIs"</span>
               <span className="text-muted-foreground">{"]"}</span>
               {"\n"}
               <span className="text-muted-foreground">{"}"}</span>
