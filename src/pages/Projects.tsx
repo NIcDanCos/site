@@ -86,11 +86,11 @@ const Projects = () => {
     <div className="min-h-screen bg-background font-mono flex flex-col">
       <Navbar />
       
-      <main className="flex-1 pt-44 sm:pt-40 pb-16 px-6">
+      <main className="flex-1 pt-44 sm:pt-44 pb-16 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-5xl md:text-5xl font-bold mb-4">
               <span className="text-foreground">Projects</span>
               <span className="text-primary animate-cursor-blink">_</span>
             </h1>
@@ -100,14 +100,16 @@ const Projects = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onLaunchDemo={handleLaunchDemo}
-              />
-            ))}
+          <div className="mx-auto" style={{ maxWidth: '680px' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 animate-fade-in">
+              {projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onLaunchDemo={handleLaunchDemo}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </main>
