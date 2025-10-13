@@ -12,43 +12,45 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/25 border-b border-border/30">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* Logo and Home icon */}
-          <div className="flex items-center gap-3 sm:gap-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/25 border-b-[3px] border-primary/30">
+      <div className="px-6 py-4 sm:py-5">
+        {/* Two rows layout - ALL SIZES */}
+        
+        {/* First row: Logo left, Home icon right - 680px on desktop/tablet, full width on mobile */}
+        <div className="mx-auto mb-4" style={{ maxWidth: '680px' }}>
+          <div className="flex items-center justify-between">
             <div className="flex-shrink-0">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/20 border border-primary/50 rounded flex items-center justify-center">
-                <span className="text-primary text-xs sm:text-sm font-bold">LOGO</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 border border-primary/50 rounded flex items-center justify-center">
+                <span className="text-primary text-sm sm:text-base font-bold">LOGO</span>
               </div>
             </div>
             <button
               onClick={() => navigate('/')}
-              className="text-foreground/60 hover:text-primary transition-colors p-1.5 sm:p-2"
+              className="text-foreground/60 hover:text-primary transition-colors p-2"
               aria-label="Home"
             >
-              <Home className="w-5 h-5 sm:w-6 sm:h-6" />
+              <Home className="w-7 h-7 sm:w-8 sm:h-8" />
             </button>
           </div>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground/60 hover:text-primary transition-colors p-1.5 sm:p-2"
-                  aria-label={social.label}
-                >
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                </a>
-              );
-            })}
-          </div>
+        </div>
+        
+        {/* Second row: Social icons centered */}
+        <div className="flex items-center justify-center gap-4 sm:gap-6">
+          {socialLinks.map((social) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/60 hover:text-primary transition-colors p-2"
+                aria-label={social.label}
+              >
+                <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
+              </a>
+            );
+          })}
         </div>
       </div>
     </nav>
