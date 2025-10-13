@@ -18,10 +18,10 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 w-full max-w-2xl mx-auto px-6 text-center animate-fade-in py-4 sm:py-8">
+      <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-8" style={{ maxWidth: '680px' }}>
         {/* Name with cursor */}
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-2">
+          <h1 className="text-5xl sm:text-4xl md:text-7xl font-bold tracking-tight mb-2">
             <span className="text-foreground">Nic Dan Cos</span>
             <span className="text-primary animate-cursor-blink">_</span>
           </h1>
@@ -57,12 +57,12 @@ const Hero = () => {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-row gap-3 justify-center items-center w-full">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full">
           <Button 
             variant="default" 
             size="lg"
             onClick={handleViewWork}
-            className="group relative overflow-hidden flex-1"
+            className="group relative overflow-hidden w-full sm:flex-1"
           >
             <span className="relative z-10">View Work</span>
             <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -72,7 +72,7 @@ const Hero = () => {
             variant="outline" 
             size="lg"
             onClick={() => setShowContactModal(true)}
-            className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10 flex-1"
+            className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10 w-full sm:flex-1"
           >
             <span className="relative z-10">Say Hello</span>
             <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

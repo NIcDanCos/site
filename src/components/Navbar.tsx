@@ -13,23 +13,25 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/25 border-b-[3px] border-primary/30">
-      <div className="max-w-4xl mx-auto px-6 py-4 sm:py-5">
+      <div className="px-6 py-4 sm:py-5">
         {/* Two rows layout - ALL SIZES */}
         
-        {/* First row: Logo left, Home icon right */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex-shrink-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 border border-primary/50 rounded flex items-center justify-center">
-              <span className="text-primary text-sm sm:text-base font-bold">LOGO</span>
+        {/* First row: Logo left, Home icon right - 680px on desktop/tablet, full width on mobile */}
+        <div className="mx-auto mb-4" style={{ maxWidth: '680px' }}>
+          <div className="flex items-center justify-between">
+            <div className="flex-shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 border border-primary/50 rounded flex items-center justify-center">
+                <span className="text-primary text-sm sm:text-base font-bold">LOGO</span>
+              </div>
             </div>
+            <button
+              onClick={() => navigate('/')}
+              className="text-foreground/60 hover:text-primary transition-colors p-2"
+              aria-label="Home"
+            >
+              <Home className="w-7 h-7 sm:w-8 sm:h-8" />
+            </button>
           </div>
-          <button
-            onClick={() => navigate('/')}
-            className="text-foreground/60 hover:text-primary transition-colors p-2"
-            aria-label="Home"
-          >
-            <Home className="w-7 h-7 sm:w-8 sm:h-8" />
-          </button>
         </div>
         
         {/* Second row: Social icons centered */}
