@@ -86,7 +86,7 @@ const Projects = () => {
     <div className="min-h-screen bg-background font-mono flex flex-col">
       <Navbar />
       
-      <main className="flex-1 pt-32 sm:pt-28 pb-16 px-6">
+      <main className="flex-1 pt-44 sm:pt-40 pb-16 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 animate-fade-in">
