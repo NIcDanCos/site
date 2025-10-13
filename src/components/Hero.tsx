@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center overflow-hidden pt-20 sm:pt-16" style={{ minHeight: 'calc(100vh - 160px)' }}>
+    <div className="relative flex items-center justify-center overflow-hidden pt-32 sm:pt-28" style={{ minHeight: 'calc(100vh - 160px)' }}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
