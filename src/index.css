@@ -74,3 +74,33 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Scrollbar styles for code boxes */
+.scrollable-code::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-code::-webkit-scrollbar-track {
+  background: hsl(220 20% 15%);
+  border-radius: 4px;
+}
+
+.scrollable-code::-webkit-scrollbar-thumb {
+  background: hsl(190 100% 50% / 0.5);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.scrollable-code::-webkit-scrollbar-thumb:hover {
+  background: hsl(190 100% 50% / 0.7);
+}
+
+.scrollable-code::-webkit-scrollbar-thumb:active {
+  background: hsl(190 100% 50% / 0.9);
+}
+
+/* Firefox scrollbar support */
+.scrollable-code {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(190 100% 50% / 0.5) hsl(220 20% 15%);
+}
