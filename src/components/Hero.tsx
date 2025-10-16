@@ -13,15 +13,15 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center overflow-hidden pt-32 sm:pt-28" style={{ minHeight: 'calc(100vh - 160px)' }}>
+    <div className="relative flex items-center justify-center overflow-hidden pt-32 sm:pt-40 md:pt-32 flex-grow" style={{ minHeight: 'calc(100vh - 240px)' }}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-6 md:py-8" style={{ maxWidth: '680px' }}>
+      <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-8 md:py-8" style={{ maxWidth: '680px' }}>
         {/* Name with cursor */}
-        <div className="mb-6 sm:mb-10 md:mb-12 w-full">
+        <div className="mb-6 sm:mb-6 md:mb-8 w-full">
           <h1 className="text-[2.25rem] min-[375px]:text-[2.5rem] min-[460px]:text-5xl min-[640px]:text-[3.5rem] md:text-7xl font-bold tracking-tight mb-2 w-full text-center">
             <span className="text-foreground">Nic Dan Cos</span>
             <span className="text-primary animate-cursor-blink">_</span>
@@ -30,36 +30,6 @@ const Hero = () => {
 
         {/* Code-style role definition - NEW: Package.json CV */}
         <PackageJson />
-
-        {/* OLD CODE - Commented out for easy revert
-        <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-12 text-left w-full">
-          <pre className="text-[13px] min-[375px]:text-base sm:text-lg break-words whitespace-pre-wrap">
-            <code className="break-words">
-              <span className="text-accent">const</span>{" "}
-              <span className="text-foreground">role</span>{" "}
-              <span className="text-muted-foreground">=</span>{" "}
-              <span className="text-muted-foreground">{"{"}</span>
-              {"\n"}
-              {"  "}
-              <span className="text-primary">title</span>
-              <span className="text-muted-foreground">:</span>{" "}
-              <span className="text-amber-400 break-words">"Full Stack Developer"</span>
-              <span className="text-muted-foreground">,</span>
-              {"\n"}
-              {"  "}
-              <span className="text-primary">focus</span>
-              <span className="text-muted-foreground">:</span>{" "}
-              <span className="text-muted-foreground">{"["}</span>
-              <span className="text-amber-400 break-words">"React"</span>
-              <span className="text-muted-foreground">,</span>{" "}
-              <span className="text-amber-400 break-words">"APIs"</span>
-              <span className="text-muted-foreground">{"]"}</span>
-              {"\n"}
-              <span className="text-muted-foreground">{"}"}</span>
-            </code>
-          </pre>
-        </div>
-        */}
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full">
