@@ -6,6 +6,7 @@
  * - Dynamic top/bottom gradient fades (only show when needed)
  * - Custom themed scrollbar
  * - Configurable max height
+ * - Optional terminal-style header bar
  * - Can wrap any content
  */
 
@@ -14,12 +15,14 @@ import { useScrollIndicators } from '@/hooks/useScrollIndicators';
 
 interface ScrollableCodeBoxProps {
   children: ReactNode;
+  header?: ReactNode;
   className?: string;
   maxHeight?: string;
 }
 
 export const ScrollableCodeBox = ({
   children,
+  header,
   className = '',
   maxHeight = 'max-h-[30vh] sm:max-h-[35vh]'
 }: ScrollableCodeBoxProps) => {
@@ -27,10 +30,17 @@ export const ScrollableCodeBox = ({
   const { showTopGradient, showBottomGradient } = useScrollIndicators(scrollRef);
 
   return (
-    <div className="relative">
+    <div className="relative mb-6 sm:mb-10 md:mb-12">
+      {/* Optional Terminal Header Bar */}
+      {header && (
+        <div className="bg-card/50 backdrop-blur-sm border border-border border-b-0 rounded-t-lg p-3 sm:p-4 text-left w-full">
+          {header}
+        </div>
+      )}
+
       {/* Top gradient fade - appears when scrolled down */}
       <div
-        className="absolute top-0 left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 rounded-t-lg"
+        className={`absolute left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 ${header ? 'top-[52px] sm:top-[60px]' : 'top-0 rounded-t-lg'}`}
         style={{
           background: 'linear-gradient(to bottom, hsl(220 25% 8%), transparent)',
           opacity: showTopGradient ? 0.9 : 0
@@ -40,7 +50,7 @@ export const ScrollableCodeBox = ({
       {/* Scrollable content with custom scrollbar */}
       <div
         ref={scrollRef}
-        className={`scrollable-code bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-10 md:mb-12 text-left w-full ${maxHeight} overflow-y-auto ${className}`}
+        className={`scrollable-code bg-card/50 backdrop-blur-sm border border-border ${header ? 'rounded-b-lg border-t-0' : 'rounded-lg'} p-4 sm:p-8 text-left w-full ${maxHeight} overflow-y-auto ${className}`}
       >
         {children}
       </div>

@@ -3,10 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { PackageJson } from "@/components/Hero/PackageJson";
+import { TerminalHeader } from "@/components/Hero/TerminalHeader";
 
 const Hero = () => {
   const navigate = useNavigate();
   const [showContactModal, setShowContactModal] = useState(false);
+
+  const rotatingTitles = [
+    "Full-Stack Developer",
+    "System Architect",
+    "Technical Lead",
+    "Problem Solver",
+  ];
 
   const handleViewWork = () => {
     navigate('/projects');
@@ -19,17 +27,17 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-8 md:py-8" style={{ maxWidth: '680px' }}>
-        {/* Name with cursor */}
-        <div className="mb-6 sm:mb-6 md:mb-8 w-full">
-          <h1 className="text-[2.25rem] min-[375px]:text-[2.5rem] min-[460px]:text-5xl min-[640px]:text-[3.5rem] md:text-7xl font-bold tracking-tight mb-2 w-full text-center">
-            <span className="text-foreground">Nic Dan Cos</span>
-            <span className="text-primary animate-cursor-blink">_</span>
-          </h1>
-        </div>
-
-        {/* Code-style role definition - NEW: Package.json CV */}
-        <PackageJson />
+      <div className="relative z-10 w-full mx-auto px-6 animate-fade-in py-4 sm:py-8 md:py-8" style={{ maxWidth: '680px' }}>
+        {/* Unified Terminal Code Block with Header */}
+        <PackageJson
+          header={
+            <TerminalHeader
+              name="Nic Dan Cos"
+              titles={rotatingTitles}
+              rotationInterval={9000}
+            />
+          }
+        />
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full">

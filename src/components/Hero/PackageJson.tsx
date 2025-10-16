@@ -3,15 +3,20 @@
  * Main container that orchestrates the package.json CV display
  */
 
+import { ReactNode } from 'react';
 import { PackageHeader } from './PackageHeader';
 import { DependencyList } from './DependencyList';
 import { ScriptsSection } from './ScriptsSection';
 import { ScrollableCodeBox } from './ScrollableCodeBox';
 import { packageData } from '@/lib/packageJsonData';
 
-export const PackageJson = () => {
+interface PackageJsonProps {
+  header?: ReactNode;
+}
+
+export const PackageJson = ({ header }: PackageJsonProps) => {
   return (
-    <ScrollableCodeBox>
+    <ScrollableCodeBox header={header}>
       <pre className="text-[13px] min-[375px]:text-base sm:text-lg break-words whitespace-pre-wrap">
         <code className="break-words">
           <PackageHeader
