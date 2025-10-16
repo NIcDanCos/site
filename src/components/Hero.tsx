@@ -19,9 +19,9 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
       
       {/* Content */}
-      <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-8" style={{ maxWidth: '680px' }}>
+      <div className="relative z-10 w-full mx-auto px-6 text-center animate-fade-in py-4 sm:py-6 md:py-8" style={{ maxWidth: '680px' }}>
         {/* Name with cursor */}
-        <div className="mb-6 sm:mb-8 w-full">
+        <div className="mb-6 sm:mb-10 md:mb-12 w-full">
           <h1 className="text-[2.25rem] min-[375px]:text-[2.5rem] min-[460px]:text-5xl min-[640px]:text-[3.5rem] md:text-7xl font-bold tracking-tight mb-2 w-full text-center">
             <span className="text-foreground">Nic Dan Cos</span>
             <span className="text-primary animate-cursor-blink">_</span>

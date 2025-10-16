@@ -6,9 +6,9 @@
 import { PackageJsonData } from '@/types/packageJson';
 
 export const packageData: PackageJsonData = {
-  name: "@nicdancos/portfolio",
+  name: "nicdancos/portfolio",
   version: "2025.1.0",
-  description: "Full Stack Developer specializing in React & APIs",
+  description: "AI Engineer",
 
   dependencies: [
     {

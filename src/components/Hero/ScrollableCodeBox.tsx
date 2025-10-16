@@ -40,7 +40,7 @@ export const ScrollableCodeBox = ({
       {/* Scrollable content with custom scrollbar */}
       <div
         ref={scrollRef}
-        className={`scrollable-code bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-12 text-left w-full ${maxHeight} overflow-y-auto ${className}`}
+        className={`scrollable-code bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 sm:p-8 mb-6 sm:mb-10 md:mb-12 text-left w-full ${maxHeight} overflow-y-auto ${className}`}
       >
         {children}
       </div>
