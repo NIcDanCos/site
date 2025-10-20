@@ -1,6 +1,6 @@
 # Portfolio Site
 
-A modern, interactive portfolio website featuring a terminal-inspired design aesthetic with a creative package.json CV presentation. Built with React, TypeScript, and Tailwind CSS.
+Terminal-inspired design aesthetic with a creative package.json CV presentation. Built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -8,7 +8,7 @@ A modern, interactive portfolio website featuring a terminal-inspired design aes
 - **Interactive CV Display** - Skills and experience presented as a package.json file with rotating job titles
 - **Project Showcase** - Grid-based project gallery with access tracking and email gating
 - **Contact Integration** - Form submissions stored in Supabase backend
-- **Dark Theme** - Carefully crafted color palette with cyan-purple accents
+- **Dark Theme** - Color palette with cyan-purple accents
 - **Fully Responsive** - Mobile-optimized with refined breakpoints
 - **Smooth Animations** - Custom Tailwind animations for fade-ins, gradients, and transitions
 
