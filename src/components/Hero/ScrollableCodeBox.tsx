@@ -30,7 +30,7 @@ export const ScrollableCodeBox = ({
   const { showTopGradient, showBottomGradient } = useScrollIndicators(scrollRef);
 
   return (
-    <div className="relative mb-6 sm:mb-10 md:mb-12">
+    <div className="relative">
       {/* Optional Terminal Header Bar */}
       {header && (
         <div className="bg-card/50 backdrop-blur-sm border border-border border-b-0 rounded-t-lg p-3 sm:p-4 text-left w-full">
@@ -40,7 +40,7 @@ export const ScrollableCodeBox = ({
 
       {/* Top gradient fade - appears when scrolled down */}
       <div
-        className={`absolute left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 ${header ? 'top-[52px] sm:top-[60px]' : 'top-0 rounded-t-lg'}`}
+        className={`absolute left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 ${header ? 'top-[46px] min-[480px]:top-[52px] sm:top-[60px]' : 'top-0 rounded-t-lg'}`}
         style={{
           background: 'linear-gradient(to bottom, hsl(220 25% 8%), transparent)',
           opacity: showTopGradient ? 0.9 : 0
