@@ -1,4 +1,5 @@
 import { Github, Twitter, Mail, BookOpen } from "lucide-react";
+import { LAYOUT_CONSTANTS } from "@/types/layout";
 
 const Footer = () => {
   const socialLinks = [
@@ -9,10 +10,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-card border-t border-border py-8">
-      <div className="container mx-auto px-4 text-center">
-        <p className="text-foreground/70 text-sm mb-4">© 2025 Nic Dan Cos</p>
-        <div className="flex items-center justify-center gap-4">
+    <footer className={`bg-card border-t border-border ${LAYOUT_CONSTANTS.footer.padding.vertical}`}>
+      <div className={`container mx-auto ${LAYOUT_CONSTANTS.footer.padding.horizontal} text-center`}>
+        <p className={`text-foreground/70 ${LAYOUT_CONSTANTS.footerText} ${LAYOUT_CONSTANTS.footer.copyrightMargin}`}>© 2025 Nic Dan Cos</p>
+        <div className={`flex items-center justify-center ${LAYOUT_CONSTANTS.footer.socialIconGap}`}>
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return (
@@ -21,10 +22,10 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground/60 hover:text-primary transition-colors p-2"
+                className={`text-foreground/60 hover:text-primary transition-colors ${LAYOUT_CONSTANTS.iconSizes.padding}`}
                 aria-label={social.label}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className={LAYOUT_CONSTANTS.iconSizes.socialFooter} />
               </a>
             );
           })}

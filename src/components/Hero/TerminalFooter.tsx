@@ -11,6 +11,7 @@
  */
 
 import { ReactNode, Children } from 'react';
+import { LAYOUT_CONSTANTS } from '@/types/layout';
 
 interface TerminalFooterProps {
   children: ReactNode;
@@ -29,7 +30,7 @@ export const TerminalFooter = ({ children }: TerminalFooterProps) => {
             <div
               className="h-px sm:h-auto sm:w-px my-0 sm:my-0 mx-0 sm:mx-0"
               style={{
-                backgroundColor: 'hsl(220 20% 15%)'
+                backgroundColor: LAYOUT_CONSTANTS.terminalColors.border
               }}
             />
           )}

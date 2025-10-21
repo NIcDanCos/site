@@ -16,6 +16,16 @@ export default {
       fontFamily: {
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
+      height: {
+        'viewport-minus-nav': 'calc(100vh - 4rem)',      // 64px navbar
+        'viewport-minus-all': 'calc(100vh - 11.5rem)',   // 64px navbar + 120px footer
+      },
+      minHeight: {
+        'viewport-minus-nav': 'calc(100vh - 4rem)',
+      },
+      maxHeight: {
+        'viewport-minus-all': 'calc(100vh - 11.5rem)',
+      },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-glow': 'var(--gradient-glow)',

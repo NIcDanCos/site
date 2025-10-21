@@ -5,8 +5,14 @@ import { PackageJson } from "@/components/Hero/PackageJson";
 import { TerminalHeader } from "@/components/Hero/TerminalHeader";
 import { TerminalFooter } from "@/components/Hero/TerminalFooter";
 import { DotGrid } from "@/components/Hero/DotGrid";
+import type { ViewportLayout } from "@/hooks/use-viewport-layout";
+import { LAYOUT_CONSTANTS } from "@/types/layout";
 
-const Hero = () => {
+interface HeroProps {
+  layoutMode?: ViewportLayout;
+}
+
+const Hero = ({ layoutMode = "compact" }: HeroProps) => {
   const navigate = useNavigate();
   const [showContactModal, setShowContactModal] = useState(false);
 
@@ -21,8 +27,11 @@ const Hero = () => {
     navigate('/projects');
   };
 
+  const heightClass =
+    layoutMode === "compact" ? "min-h-viewport-minus-nav" : "flex-grow";
+
   return (
-    <div className="relative flex items-center justify-center overflow-hidden flex-grow mt-32 sm:mt-36">
+    <div className={`relative flex items-center justify-center overflow-hidden ${heightClass} ${LAYOUT_CONSTANTS.hero.topSpacing.mobile} ${LAYOUT_CONSTANTS.hero.topSpacing.tablet}`}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
@@ -31,8 +40,9 @@ const Hero = () => {
       <DotGrid />
 
       {/* Content */}
-      <div className="relative z-10 w-full mx-auto px-6 animate-fade-in" style={{ maxWidth: '680px' }}>
+      <div className={`relative z-10 w-full mx-auto ${LAYOUT_CONSTANTS.hero.contentPadding} animate-fade-in`} style={{ maxWidth: LAYOUT_CONSTANTS.maxWidths.heroContent }}>
         <PackageJson
+          layoutMode={layoutMode}
           header={
             <TerminalHeader
               name="Nic Dan Cos"
@@ -44,12 +54,11 @@ const Hero = () => {
             <TerminalFooter>
               <button
                 onClick={handleViewWork}
-                className="h-11 px-8 w-full text-sm font-medium rounded-none transition-all hover:brightness-90"
+                className={`${LAYOUT_CONSTANTS.buttons.height} ${LAYOUT_CONSTANTS.buttons.padding} w-full ${LAYOUT_CONSTANTS.buttons.textSize} font-medium rounded-none transition-all hover:brightness-90`}
                 style={{
                   border: 'none',
                   outline: 'none',
                   margin: 0,
-                  padding: '0 2rem',
                   boxShadow: 'none',
                   textShadow: 'none',
                   backgroundImage: 'none',
@@ -57,8 +66,8 @@ const Hero = () => {
                   WebkitAppearance: 'none',
                   cursor: 'pointer',
                   fontFamily: 'inherit',
-                  background: 'hsl(190 100% 50%)',
-                  color: 'hsl(220 30% 4%)',
+                  background: LAYOUT_CONSTANTS.buttonColors.primary.background,
+                  color: LAYOUT_CONSTANTS.buttonColors.primary.text,
                 }}
               >
                 View Work
@@ -66,12 +75,11 @@ const Hero = () => {
 
               <button
                 onClick={() => setShowContactModal(true)}
-                className="h-11 px-8 w-full text-sm font-medium rounded-none transition-all hover:bg-[hsl(190_100%_50%_/_0.1)]"
+                className={`${LAYOUT_CONSTANTS.buttons.height} ${LAYOUT_CONSTANTS.buttons.padding} w-full ${LAYOUT_CONSTANTS.buttons.textSize} font-medium rounded-none transition-all`}
                 style={{
                   border: 'none',
                   outline: 'none',
                   margin: 0,
-                  padding: '0 2rem',
                   boxShadow: 'none',
                   textShadow: 'none',
                   backgroundImage: 'none',
@@ -79,9 +87,11 @@ const Hero = () => {
                   WebkitAppearance: 'none',
                   cursor: 'pointer',
                   fontFamily: 'inherit',
-                  background: 'transparent',
-                  color: 'hsl(190 100% 50%)',
+                  background: LAYOUT_CONSTANTS.buttonColors.secondary.background,
+                  color: LAYOUT_CONSTANTS.buttonColors.secondary.text,
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.background = LAYOUT_CONSTANTS.buttonColors.secondary.hoverBg}
+                onMouseLeave={(e) => e.currentTarget.style.background = LAYOUT_CONSTANTS.buttonColors.secondary.background}
               >
                 Say Hello
               </button>
@@ -94,7 +104,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255, 255, 255, 0.03) 3px, rgba(255, 255, 255, 0.03) 4px)',
+          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent ${LAYOUT_CONSTANTS.effects.scanline.height}, ${LAYOUT_CONSTANTS.effects.scanline.opacity} ${LAYOUT_CONSTANTS.effects.scanline.height}, ${LAYOUT_CONSTANTS.effects.scanline.opacity} 4px)`,
         }}
       />
 

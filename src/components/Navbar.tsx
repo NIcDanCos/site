@@ -1,5 +1,6 @@
 import { Github, Twitter, Mail, BookOpen, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { LAYOUT_CONSTANTS } from "@/types/layout";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -12,30 +13,30 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/25 border-b-[3px] border-primary/30">
-      <div className="px-6 py-4 sm:py-5">
+    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/25 ${LAYOUT_CONSTANTS.navbar.border} ${LAYOUT_CONSTANTS.navbarColors.borderBottom}`}>
+      <div className={`${LAYOUT_CONSTANTS.navbar.padding.horizontal} ${LAYOUT_CONSTANTS.navbar.padding.vertical.mobile} ${LAYOUT_CONSTANTS.navbar.padding.vertical.tablet}`}>
         {/* Two rows layout - ALL SIZES */}
-        
+
         {/* First row: Logo left, Home icon right - 680px on desktop/tablet, full width on mobile */}
-        <div className="mx-auto mb-4" style={{ maxWidth: '680px' }}>
+        <div className={`mx-auto ${LAYOUT_CONSTANTS.navbar.rowGap}`} style={{ maxWidth: LAYOUT_CONSTANTS.maxWidths.navbarContent }}>
           <div className="flex items-center justify-between">
             <div className="flex-shrink-0">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 border border-primary/50 rounded flex items-center justify-center">
-                <span className="text-primary text-sm sm:text-base font-bold">LOGO</span>
+              <div className={`${LAYOUT_CONSTANTS.iconSizes.logo.mobile} ${LAYOUT_CONSTANTS.iconSizes.logo.tablet} bg-primary/20 border border-primary/50 rounded flex items-center justify-center`}>
+                <span className={`text-primary ${LAYOUT_CONSTANTS.logoText.mobile} ${LAYOUT_CONSTANTS.logoText.tablet} font-bold`}>LOGO</span>
               </div>
             </div>
             <button
               onClick={() => navigate('/')}
-              className="text-foreground/60 hover:text-primary transition-colors p-2"
+              className={`text-foreground/60 hover:text-primary transition-colors ${LAYOUT_CONSTANTS.iconSizes.padding}`}
               aria-label="Home"
             >
-              <Home className="w-7 h-7 sm:w-8 sm:h-8" />
+              <Home className={`${LAYOUT_CONSTANTS.iconSizes.homeButton.mobile} ${LAYOUT_CONSTANTS.iconSizes.homeButton.tablet}`} />
             </button>
           </div>
         </div>
-        
+
         {/* Second row: Social icons centered */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6">
+        <div className={`flex items-center justify-center ${LAYOUT_CONSTANTS.navbar.socialIconGap.mobile} ${LAYOUT_CONSTANTS.navbar.socialIconGap.tablet}`}>
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return (
@@ -44,10 +45,10 @@ const Navbar = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground/60 hover:text-primary transition-colors p-2"
+                className={`text-foreground/60 hover:text-primary transition-colors ${LAYOUT_CONSTANTS.iconSizes.padding}`}
                 aria-label={social.label}
               >
-                <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
+                <Icon className={`${LAYOUT_CONSTANTS.iconSizes.socialNav.mobile} ${LAYOUT_CONSTANTS.iconSizes.socialNav.tablet}`} />
               </a>
             );
           })}

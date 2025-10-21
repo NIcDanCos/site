@@ -14,6 +14,8 @@
 
 import { ReactNode, useRef } from 'react';
 import { useScrollIndicators } from '@/hooks/useScrollIndicators';
+import type { ViewportLayout } from '@/hooks/use-viewport-layout';
+import { LAYOUT_CONSTANTS } from '@/types/layout';
 
 interface ScrollableCodeBoxProps {
   children: ReactNode;
@@ -21,6 +23,7 @@ interface ScrollableCodeBoxProps {
   footer?: ReactNode;
   className?: string;
   maxHeight?: string;
+  layoutMode?: ViewportLayout;
 }
 
 export const ScrollableCodeBox = ({
@@ -28,8 +31,15 @@ export const ScrollableCodeBox = ({
   header,
   footer,
   className = '',
-  maxHeight = 'max-h-[30vh] sm:max-h-[35vh]'
+  maxHeight,
+  layoutMode = "compact"
 }: ScrollableCodeBoxProps) => {
+  // Determine max height based on layout mode
+  const computedMaxHeight = maxHeight || (
+    layoutMode === "full"
+      ? LAYOUT_CONSTANTS.codeboxHeight.full
+      : `${LAYOUT_CONSTANTS.codeboxHeight.compact.mobile} ${LAYOUT_CONSTANTS.codeboxHeight.compact.tablet}`
+  );
   const scrollRef = useRef<HTMLDivElement>(null);
   const { showTopGradient } = useScrollIndicators(scrollRef);
 
@@ -83,7 +93,7 @@ export const ScrollableCodeBox = ({
       {/* Scrollable content with custom scrollbar */}
       <div
         ref={scrollRef}
-        className={`scrollable-code terminal-content-inset bg-card/50 backdrop-blur-sm border border-border ${getContentBorderRadius()} ${getContentBorderClasses()} p-4 sm:p-8 text-left w-full ${maxHeight} overflow-y-auto ${className}`}
+        className={`scrollable-code terminal-content-inset bg-card/50 backdrop-blur-sm border border-border ${getContentBorderRadius()} ${getContentBorderClasses()} p-4 sm:p-8 text-left w-full ${computedMaxHeight} overflow-y-auto ${className}`}
       >
         {children}
       </div>

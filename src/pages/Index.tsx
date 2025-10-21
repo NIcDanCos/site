@@ -1,12 +1,16 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useViewportLayout } from "@/hooks/use-viewport-layout";
 
 const Index = () => {
+  const layout = useViewportLayout();
+  const containerHeight = layout === "full" ? "h-screen" : "min-h-screen";
+
   return (
-    <div className="min-h-screen bg-background font-mono flex flex-col">
+    <div className={`${containerHeight} bg-background font-mono flex flex-col`}>
       <Navbar />
-      <Hero />
+      <Hero layoutMode={layout} />
       <Footer />
     </div>
   );
