@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { PackageJson } from "@/components/Hero/PackageJson";
 import { TerminalHeader } from "@/components/Hero/TerminalHeader";
+import { DotGrid } from "@/components/Hero/DotGrid";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -25,6 +26,9 @@ const Hero = () => {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
+
+      {/* Animated dot grid */}
+      <DotGrid />
 
       {/* Content */}
       <div className="relative z-10 w-full mx-auto px-6 animate-fade-in" style={{ maxWidth: '680px' }}>

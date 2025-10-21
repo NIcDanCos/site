@@ -143,6 +143,10 @@ export default {
             color: "hsl(0 0% 88%)", // foreground
           },
         },
+        "dot-pulse": {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "0.6" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -156,6 +160,7 @@ export default {
         "title-fade-out": "title-fade-out 1s ease-in-out forwards",
         "title-fade-in": "title-fade-in 1.2s ease-in-out forwards",
         "title-gradient-shift": "title-gradient-shift 1.2s ease-in-out forwards",
+        "dot-pulse": "dot-pulse 6s ease-in-out infinite",
       },
     },
   },
