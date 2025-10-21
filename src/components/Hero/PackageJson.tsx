@@ -21,7 +21,7 @@ export const PackageJson = ({ header, actions }: PackageJsonProps) => {
       header={header}
       footer={
         actions ? (
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full">
+          <div className="flex flex-row gap-3 justify-center items-center w-full">
             {actions}
           </div>
         ) : undefined
