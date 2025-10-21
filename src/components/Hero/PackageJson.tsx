@@ -19,13 +19,7 @@ export const PackageJson = ({ header, actions }: PackageJsonProps) => {
   return (
     <ScrollableCodeBox
       header={header}
-      footer={
-        actions ? (
-          <div className="flex flex-row gap-3 justify-center items-center w-full">
-            {actions}
-          </div>
-        ) : undefined
-      }
+      footer={actions}
     >
       <pre className="text-[13px] min-[375px]:text-base sm:text-lg break-words whitespace-pre-wrap">
         <code className="break-words">

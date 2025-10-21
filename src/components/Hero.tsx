@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { PackageJson } from "@/components/Hero/PackageJson";
 import { TerminalHeader } from "@/components/Hero/TerminalHeader";
+import { TerminalFooter } from "@/components/Hero/TerminalFooter";
 import { DotGrid } from "@/components/Hero/DotGrid";
 
 const Hero = () => {
@@ -41,38 +41,51 @@ const Hero = () => {
             />
           }
           actions={
-            <>
-              <Button
-                variant="default"
-                size="lg"
+            <TerminalFooter>
+              <button
                 onClick={handleViewWork}
-                className="group relative overflow-hidden flex-1 shadow-none"
+                className="h-11 px-8 w-full text-sm font-medium rounded-none transition-all hover:brightness-90"
                 style={{
+                  border: 'none',
+                  outline: 'none',
+                  margin: 0,
+                  padding: '0 2rem',
                   boxShadow: 'none',
-                  filter: 'none',
-                  transform: 'none'
+                  textShadow: 'none',
+                  backgroundImage: 'none',
+                  WebkitTapHighlightColor: 'transparent',
+                  WebkitAppearance: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  background: 'hsl(190 100% 50%)',
+                  color: 'hsl(220 30% 4%)',
                 }}
               >
-                <span className="relative z-10">View Work</span>
-                <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
+                View Work
+              </button>
 
-              <Button
-                variant="outline"
-                size="lg"
+              <button
                 onClick={() => setShowContactModal(true)}
-                className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10 flex-1 shadow-none"
+                className="h-11 px-8 w-full text-sm font-medium rounded-none transition-all hover:bg-[hsl(190_100%_50%_/_0.1)]"
                 style={{
+                  border: 'none',
+                  outline: 'none',
+                  margin: 0,
+                  padding: '0 2rem',
                   boxShadow: 'none',
-                  filter: 'none',
-                  transform: 'none',
-                  borderWidth: '0.5px'
+                  textShadow: 'none',
+                  backgroundImage: 'none',
+                  WebkitTapHighlightColor: 'transparent',
+                  WebkitAppearance: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  background: 'transparent',
+                  color: 'hsl(190 100% 50%)',
                 }}
               >
-                <span className="relative z-10">Say Hello</span>
-                <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
-            </>
+                Say Hello
+              </button>
+            </TerminalFooter>
           }
         />
       </div>

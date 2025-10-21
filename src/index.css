@@ -104,3 +104,19 @@ All colors MUST be HSL.
   scrollbar-width: thin;
   scrollbar-color: hsl(190 100% 50% / 0.5) hsl(220 20% 15%);
 }
+
+/* 3D depth effects for terminal box - ONLY on screens 640px and above */
+@media (min-width: 640px) {
+  .terminal-box-3d {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 10px 15px -3px rgba(0, 0, 0, 0.4),
+      0 20px 25px -5px rgba(0, 0, 0, 0.3),
+      0 1px 0 0 rgba(190, 255, 255, 0.1) inset,
+      1px 0 0 0 rgba(190, 255, 255, 0.05) inset;
+  }
+
+  .terminal-content-inset {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  }
+}
