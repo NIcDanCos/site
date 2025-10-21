@@ -46,7 +46,12 @@ const Hero = () => {
                 variant="default"
                 size="lg"
                 onClick={handleViewWork}
-                className="group relative overflow-hidden w-full sm:flex-1"
+                className="group relative overflow-hidden w-full sm:flex-1 shadow-none"
+                style={{
+                  boxShadow: 'none',
+                  filter: 'none',
+                  transform: 'none'
+                }}
               >
                 <span className="relative z-10">View Work</span>
                 <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -56,7 +61,13 @@ const Hero = () => {
                 variant="outline"
                 size="lg"
                 onClick={() => setShowContactModal(true)}
-                className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10 w-full sm:flex-1"
+                className="group relative overflow-hidden border-primary text-primary hover:bg-primary/10 w-full sm:flex-1 shadow-none"
+                style={{
+                  boxShadow: 'none',
+                  filter: 'none',
+                  transform: 'none',
+                  borderWidth: '0.5px'
+                }}
               >
                 <span className="relative z-10">Say Hello</span>
                 <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
