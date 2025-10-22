@@ -270,7 +270,7 @@ export const HERO_TOKENS: HeroTokens = {
 
   codeboxHeight: {
     compact: {
-      mobile: "max-h-[50vh]",      // 👈 55% viewport height on mobile compact
+      mobile: "max-h-[45vh]",      // 👈 55% viewport height on mobile compact
       tablet: "sm:max-h-[55vh]",   // 👈 55% viewport height on tablet compact
     },
     full: "max-h-[40vh]",          // 👈 40% viewport height in full mode
@@ -287,7 +287,7 @@ export const HERO_TOKENS: HeroTokens = {
       container: {
         mobile: "w-[45px] h-[25px]",                                      // 👈 15px square on mobile (matches prompt text)
         midMobile: "min-[480px]:w-[50px] min-[480px]:h-[35px]",          // 👈 18px square at 480px+
-        tablet: "min-[640px]:w-12 min-[640px]:h-8",                       // 👈 24px square at 640px+ (matches text-2xl)
+        tablet: "min-[640px]:w-10 min-[640px]:h-6",                       // 👈 24px square at 640px+ (matches text-2xl)
       },
       text: {
         mobile: "text-[10px]",                     // 👈 10px "LOGO" text on mobile

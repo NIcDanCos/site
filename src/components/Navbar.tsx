@@ -22,7 +22,22 @@ const Navbar = () => {
         <div className={`mx-auto ${LAYOUT_CONSTANTS.navbar.rowGap}`} style={{ maxWidth: LAYOUT_CONSTANTS.maxWidths.navbarContent }}>
           <div className="flex items-center justify-between">
             <div className="flex-shrink-0">
-              <Logo size="navbar" />
+              {/* Mobile Logo - Hidden on tablet/desktop (>= 768px) */}
+              <Logo
+                size="navbar"
+                imageSrc="/assets/logo/nic.png"
+                alt="Site Logo"
+                className="md:hidden"
+              />
+
+              {/* Tablet/Desktop Logo - Hidden on mobile (< 768px) */}
+              <Logo
+                size="navbar"
+                imageSrc="/assets/logo/logo-desktop.svg"
+                alt="Site Logo"
+                className="hidden md:block"
+                rounded="sm"
+              />
             </div>
             <button
               onClick={() => navigate('/')}

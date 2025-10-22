@@ -36,7 +36,11 @@ export const TerminalHeader = ({
         {/* Line 1: Identity (Left) + Location Pill (Right) */}
         <div className="flex items-center justify-between gap-2">
           {/* Logo - Commented out for mobile, uncomment to restore */}
-          {/* <Logo size="terminal" /> */}
+          {/* <Logo
+            size="terminal"
+            imageSrc="/assets/logo/logo.svg"
+            alt="Site Logo"
+          /> */}
 
           {/* Left: Identity */}
           <div className="flex items-center gap-2">
@@ -81,7 +85,13 @@ export const TerminalHeader = ({
         <div className="flex items-center justify-between gap-2">
           {/* Left: Logo + Identity */}
           <div className="flex items-center gap-2">
-            <Logo size="terminal" />
+            <Logo
+              size="terminal"
+              imageSrc="/assets/logo/nic.png"
+              objectFit="cover"
+              rounded="sm"
+              alt="Site Logo"
+            />
             <span className={`text-foreground font-bold ${LAYOUT_CONSTANTS.terminalText.prompt.tablet}`}>
               {name}
             </span>
