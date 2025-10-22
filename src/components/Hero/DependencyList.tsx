@@ -18,7 +18,7 @@ export const DependencyList = ({ type, items, animated = true }: DependencyListP
   return (
     <>
       {"  "}
-      <span className="text-primary max-[374px]:text-sm">&quot;{type}&quot;</span>
+      <span className="text-primary">&quot;{type}&quot;</span>
       <span className="text-muted-foreground">: {"{"}</span>
       {"\n"}
       {items.map((dependency, index) => (

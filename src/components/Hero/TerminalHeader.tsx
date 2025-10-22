@@ -12,7 +12,7 @@
 
 import { AnimatedRotatingTitle } from './AnimatedRotatingTitle';
 import { Logo } from '../Logo';
-import { LAYOUT_CONSTANTS } from '@/types/layout';
+import { HERO_TOKENS } from '@/types/layout';
 
 interface TerminalHeaderProps {
   name: string;
@@ -44,10 +44,10 @@ export const TerminalHeader = ({
 
           {/* Left: Identity */}
           <div className="flex items-center gap-2">
-            <span className={`text-foreground font-bold ${LAYOUT_CONSTANTS.terminalText.prompt.mobile} ${LAYOUT_CONSTANTS.terminalText.prompt.midMobile}`}>
+            <span className={`text-foreground font-bold ${HERO_TOKENS.terminalText.prompt.mobile} ${HERO_TOKENS.terminalText.prompt.midMobile}`}>
               {name}
             </span>
-            <span className={`text-primary font-bold ${LAYOUT_CONSTANTS.terminalText.prompt.mobile} ${LAYOUT_CONSTANTS.terminalText.prompt.midMobile}`}>
+            <span className={`text-primary font-bold ${HERO_TOKENS.terminalText.prompt.mobile} ${HERO_TOKENS.terminalText.prompt.midMobile}`}>
               @portfolio
             </span>
           </div>
@@ -62,19 +62,19 @@ export const TerminalHeader = ({
 
         {/* Line 2: Role + Rotating Titles (Codebox value styling - amber-400) */}
         <div className="flex items-center gap-2">
-          <span className={`text-primary animate-cursor-blink font-bold ${LAYOUT_CONSTANTS.terminalText.title.mobile} ${LAYOUT_CONSTANTS.terminalText.title.midMobile}`}>
+          <span className={`text-primary animate-cursor-blink font-bold ${HERO_TOKENS.terminalText.title.mobile} ${HERO_TOKENS.terminalText.title.midMobile}`}>
             &gt;
           </span>
-          <span className={`text-amber-400 font-normal ${LAYOUT_CONSTANTS.terminalText.title.mobile} ${LAYOUT_CONSTANTS.terminalText.title.midMobile}`}>
+          <span className={`text-amber-400 font-normal ${HERO_TOKENS.terminalText.title.mobile} ${HERO_TOKENS.terminalText.title.midMobile}`}>
             {role}
           </span>
-          <span className={`text-muted-foreground font-normal ${LAYOUT_CONSTANTS.terminalText.title.mobile} ${LAYOUT_CONSTANTS.terminalText.title.midMobile}`}>
+          <span className={`text-muted-foreground font-normal ${HERO_TOKENS.terminalText.title.mobile} ${HERO_TOKENS.terminalText.title.midMobile}`}>
             /
           </span>
           <AnimatedRotatingTitle
             titles={titles}
             rotationInterval={rotationInterval}
-            className={`text-amber-400 font-normal ${LAYOUT_CONSTANTS.terminalText.title.mobile} ${LAYOUT_CONSTANTS.terminalText.title.midMobile} whitespace-nowrap overflow-hidden text-ellipsis`}
+            className={`text-amber-400 font-normal ${HERO_TOKENS.terminalText.title.mobile} ${HERO_TOKENS.terminalText.title.midMobile} whitespace-nowrap overflow-hidden text-ellipsis`}
           />
         </div>
       </div>
@@ -92,10 +92,10 @@ export const TerminalHeader = ({
               rounded="sm"
               alt="Site Logo"
             />
-            <span className={`text-foreground font-bold ${LAYOUT_CONSTANTS.terminalText.prompt.tablet}`}>
+            <span className={`text-foreground font-bold ${HERO_TOKENS.terminalText.prompt.tablet}`}>
               {name}
             </span>
-            <span className={`text-primary font-bold ${LAYOUT_CONSTANTS.terminalText.prompt.tablet}`}>
+            <span className={`text-primary font-bold ${HERO_TOKENS.terminalText.prompt.tablet}`}>
               @portfolio
             </span>
           </div>
@@ -110,19 +110,19 @@ export const TerminalHeader = ({
 
         {/* Line 2: Static Role + Rotating Titles (Codebox value styling - amber-400) */}
         <div className="flex items-center gap-2 opacity-90">
-          <span className={`text-primary animate-cursor-blink font-bold ${LAYOUT_CONSTANTS.terminalText.title.tablet}`}>
+          <span className={`text-primary animate-cursor-blink font-bold ${HERO_TOKENS.terminalText.title.tablet}`}>
             &gt;
           </span>
-          <span className={`text-amber-400 font-normal ${LAYOUT_CONSTANTS.terminalText.title.tablet}`}>
+          <span className={`text-amber-400 font-normal ${HERO_TOKENS.terminalText.title.tablet}`}>
             {role}
           </span>
-          <span className={`text-muted-foreground font-normal ${LAYOUT_CONSTANTS.terminalText.title.tablet}`}>
+          <span className={`text-muted-foreground font-normal ${HERO_TOKENS.terminalText.title.tablet}`}>
             /
           </span>
           <AnimatedRotatingTitle
             titles={titles}
             rotationInterval={rotationInterval}
-            className={`text-amber-400 font-normal ${LAYOUT_CONSTANTS.terminalText.title.tablet} whitespace-nowrap overflow-hidden text-ellipsis`}
+            className={`text-amber-400 font-normal ${HERO_TOKENS.terminalText.title.tablet} whitespace-nowrap overflow-hidden text-ellipsis`}
           />
         </div>
       </div>

@@ -10,7 +10,7 @@ import { ScriptsSection } from './ScriptsSection';
 import { ScrollableCodeBox } from './ScrollableCodeBox';
 import { packageData } from '@/lib/packageJsonData';
 import type { ViewportLayout } from '@/hooks/use-viewport-layout';
-import { LAYOUT_CONSTANTS } from '@/types/layout';
+import { HERO_TOKENS } from '@/types/layout';
 
 interface PackageJsonProps {
   header?: ReactNode;
@@ -25,7 +25,7 @@ export const PackageJson = ({ header, actions, layoutMode = "compact" }: Package
       footer={actions}
       layoutMode={layoutMode}
     >
-      <pre className={`${LAYOUT_CONSTANTS.codeText.mobile} ${LAYOUT_CONSTANTS.codeText.midMobile} ${LAYOUT_CONSTANTS.codeText.tablet} break-words whitespace-pre-wrap`}>
+      <pre className={`${HERO_TOKENS.codeText.mobile} ${HERO_TOKENS.codeText.midMobile} ${HERO_TOKENS.codeText.tablet} break-words whitespace-pre-wrap`}>
         <code className="break-words">
           <PackageHeader
             name={packageData.name}

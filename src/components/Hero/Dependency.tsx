@@ -18,9 +18,9 @@ export const Dependency = ({ dependency, isLast, animationDelay = 0 }: Dependenc
       style={{ animationDelay: `${animationDelay}ms` }}
     >
       {"    "}
-      <span className="text-primary max-[374px]:text-sm">&quot;{dependency.name}&quot;</span>
+      <span className="text-primary">&quot;{dependency.name}&quot;</span>
       <span className="text-muted-foreground">: </span>
-      <span className="text-amber-400 text-sm max-[374px]:text-xs">&quot;{dependency.version}&quot;</span>
+      <span className="text-amber-400">&quot;{dependency.version}&quot;</span>
       {!isLast && <span className="text-muted-foreground">,</span>}
     </div>
   );

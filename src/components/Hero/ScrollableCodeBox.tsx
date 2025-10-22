@@ -15,7 +15,7 @@
 import { ReactNode, useRef } from 'react';
 import { useScrollIndicators } from '@/hooks/useScrollIndicators';
 import type { ViewportLayout } from '@/hooks/use-viewport-layout';
-import { LAYOUT_CONSTANTS } from '@/types/layout';
+import { HERO_TOKENS } from '@/types/layout';
 
 interface ScrollableCodeBoxProps {
   children: ReactNode;
@@ -37,8 +37,8 @@ export const ScrollableCodeBox = ({
   // Determine max height based on layout mode
   const computedMaxHeight = maxHeight || (
     layoutMode === "full"
-      ? LAYOUT_CONSTANTS.codeboxHeight.full
-      : `${LAYOUT_CONSTANTS.codeboxHeight.compact.mobile} ${LAYOUT_CONSTANTS.codeboxHeight.compact.tablet}`
+      ? HERO_TOKENS.codeboxHeight.full
+      : `${HERO_TOKENS.codeboxHeight.compact.mobile} ${HERO_TOKENS.codeboxHeight.compact.tablet}`
   );
   const scrollRef = useRef<HTMLDivElement>(null);
   const { showTopGradient } = useScrollIndicators(scrollRef);
@@ -73,8 +73,8 @@ export const ScrollableCodeBox = ({
           className="backdrop-blur-sm border border-border border-b rounded-t-lg p-3 sm:p-4 text-left w-full"
           style={{
             // Darker background for header bar to create visual hierarchy
-            background: 'linear-gradient(to bottom, hsl(220 25% 10%), hsl(220 25% 8%))',
-            borderBottomColor: 'hsl(220 20% 15%)'
+            background: HERO_TOKENS.terminalColors.headerBackground,
+            borderBottomColor: HERO_TOKENS.terminalColors.borderBottom
           }}
         >
           {header}
@@ -85,7 +85,7 @@ export const ScrollableCodeBox = ({
       <div
         className={`absolute left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 ${header ? 'top-[46px] min-[480px]:top-[52px] sm:top-[60px]' : 'top-0 rounded-t-lg'}`}
         style={{
-          background: 'linear-gradient(to bottom, hsl(220 25% 8%), transparent)',
+          background: HERO_TOKENS.terminalColors.gradientFade,
           opacity: showTopGradient ? 0.9 : 0
         }}
       />
@@ -104,8 +104,8 @@ export const ScrollableCodeBox = ({
           className="backdrop-blur-sm border border-border border-t rounded-b-lg p-3 sm:p-4 text-left w-full"
           style={{
             // Solid background for footer bar - no gradients
-            background: 'hsl(220 25% 9%)',
-            borderTopColor: 'hsl(220 20% 15%)'
+            background: HERO_TOKENS.terminalColors.footerBackground,
+            borderTopColor: HERO_TOKENS.terminalColors.borderBottom
           }}
         >
           {footer}
