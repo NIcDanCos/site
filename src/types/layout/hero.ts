@@ -43,8 +43,9 @@ export interface HeroTokens {
   /** Hero section spacing */
   hero: {
     topSpacing: {
-      mobile: string;      // Top margin on mobile (e.g., "mt-32")
-      tablet: string;      // Top margin on tablet+ (e.g., "sm:mt-32")
+      mobile: string;      // Top margin on mobile < 640px (e.g., "mt-24")
+      tablet: string;      // Top margin on tablet ≥ 640px (e.g., "sm:mt-28")
+      desktop: string;     // Top margin on desktop ≥ 1024px (e.g., "lg:mt-32")
     };
     contentPadding: string; // Horizontal padding (e.g., "px-6")
   };
@@ -174,8 +175,9 @@ export const HERO_TOKENS: HeroTokens = {
 
   hero: {
     topSpacing: {
-      mobile: "mt-32",         // 👈 128px top margin on mobile
-      tablet: "sm:mt-32",      // 👈 128px top margin on tablet+
+      mobile: "mt-20",         // 👈 96px on mobile (< 640px)
+      tablet: "sm:mt-28",      // 👈 112px on tablet (≥ 640px)
+      desktop: "lg:mt-40",     // 👈 128px on desktop (≥ 1024px)
     },
     contentPadding: "px-6",    // 👈 24px horizontal padding
   },
@@ -248,7 +250,7 @@ export const HERO_TOKENS: HeroTokens = {
 
   codeboxHeight: {
     compact: {
-      mobile: "max-h-[55vh]",      // 👈 55% viewport height on mobile compact
+      mobile: "max-h-[50vh]",      // 👈 55% viewport height on mobile compact
       tablet: "sm:max-h-[55vh]",   // 👈 55% viewport height on tablet compact
     },
     full: "max-h-[40vh]",          // 👈 40% viewport height in full mode

@@ -31,7 +31,7 @@ const Hero = ({ layoutMode = "compact" }: HeroProps) => {
     layoutMode === "compact" ? "min-h-viewport-minus-nav" : "flex-grow";
 
   return (
-    <div className={`relative flex items-center justify-center overflow-hidden ${heightClass} ${LAYOUT_CONSTANTS.hero.topSpacing.mobile} ${LAYOUT_CONSTANTS.hero.topSpacing.tablet}`}>
+    <div className={`relative flex items-center justify-center overflow-hidden ${heightClass} ${LAYOUT_CONSTANTS.hero.topSpacing.mobile} ${LAYOUT_CONSTANTS.hero.topSpacing.tablet} ${LAYOUT_CONSTANTS.hero.topSpacing.desktop}`}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />
