@@ -129,6 +129,26 @@ export interface HeroTokens {
   };
 
   // ============================================================================
+  // LOGO
+  // ============================================================================
+
+  /** Terminal logo sizing to match text height */
+  logo: {
+    terminal: {
+      container: {
+        mobile: string;      // Logo container size < 480px (e.g., "w-[15px] h-[15px]")
+        midMobile: string;   // Logo container size ≥ 480px (e.g., "min-[480px]:w-[18px] min-[480px]:h-[18px]")
+        tablet: string;      // Logo container size ≥ 640px (e.g., "min-[640px]:w-6 min-[640px]:h-6")
+      };
+      text: {
+        mobile: string;      // Logo text size < 480px (e.g., "text-[10px]")
+        midMobile: string;   // Logo text size ≥ 480px (e.g., "min-[480px]:text-[12px]")
+        tablet: string;      // Logo text size ≥ 640px (e.g., "min-[640px]:text-sm")
+      };
+    };
+  };
+
+  // ============================================================================
   // TYPOGRAPHY
   // ============================================================================
 
@@ -254,6 +274,27 @@ export const HERO_TOKENS: HeroTokens = {
       tablet: "sm:max-h-[55vh]",   // 👈 55% viewport height on tablet compact
     },
     full: "max-h-[40vh]",          // 👈 40% viewport height in full mode
+  },
+
+  // ============================================================================
+  // LOGO
+  // ============================================================================
+  // Terminal logo sizing - adjust these to scale logo relative to text
+  // Tip: Logo should match or be slightly smaller than prompt text height
+
+  logo: {
+    terminal: {
+      container: {
+        mobile: "w-[45px] h-[25px]",                                      // 👈 15px square on mobile (matches prompt text)
+        midMobile: "min-[480px]:w-[50px] min-[480px]:h-[35px]",          // 👈 18px square at 480px+
+        tablet: "min-[640px]:w-12 min-[640px]:h-8",                       // 👈 24px square at 640px+ (matches text-2xl)
+      },
+      text: {
+        mobile: "text-[10px]",                     // 👈 10px "LOGO" text on mobile
+        midMobile: "min-[480px]:text-[12px]",      // 👈 12px at 480px+
+        tablet: "min-[640px]:text-sm",             // 👈 14px at 640px+
+      },
+    },
   },
 
   // ============================================================================

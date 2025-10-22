@@ -1,5 +1,6 @@
 import { Github, Twitter, Mail, BookOpen, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Logo } from "@/components/Logo";
 import { LAYOUT_CONSTANTS } from "@/types/layout";
 
 const Navbar = () => {
@@ -21,9 +22,7 @@ const Navbar = () => {
         <div className={`mx-auto ${LAYOUT_CONSTANTS.navbar.rowGap}`} style={{ maxWidth: LAYOUT_CONSTANTS.maxWidths.navbarContent }}>
           <div className="flex items-center justify-between">
             <div className="flex-shrink-0">
-              <div className={`${LAYOUT_CONSTANTS.iconSizes.logo.mobile} ${LAYOUT_CONSTANTS.iconSizes.logo.tablet} bg-primary/20 border border-primary/50 rounded flex items-center justify-center`}>
-                <span className={`text-primary ${LAYOUT_CONSTANTS.logoText.mobile} ${LAYOUT_CONSTANTS.logoText.tablet} font-bold`}>LOGO</span>
-              </div>
+              <Logo size="navbar" />
             </div>
             <button
               onClick={() => navigate('/')}

@@ -157,6 +157,18 @@ export default {
           "0%, 100%": { opacity: "0.3" },
           "50%": { opacity: "0.6" },
         },
+        "pulse-border": {
+          "0%, 100%": {
+            borderColor: "hsl(190 100% 50% / 0.3)",
+            backgroundColor: "hsl(190 100% 50% / 0.05)",
+            boxShadow: "0 0 0 0 hsl(190 100% 50% / 0)",
+          },
+          "50%": {
+            borderColor: "hsl(190 100% 50% / 0.6)",
+            backgroundColor: "hsl(190 100% 50% / 0.08)",
+            boxShadow: "0 0 8px 0 hsl(190 100% 50% / 0.2)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -171,6 +183,7 @@ export default {
         "title-fade-in": "title-fade-in 1.2s ease-in-out forwards",
         "title-gradient-shift": "title-gradient-shift 1.2s ease-in-out forwards",
         "dot-pulse": "dot-pulse 6s ease-in-out infinite",
+        "pulse-border": "pulse-border 2.5s ease-in-out infinite",
       },
     },
   },

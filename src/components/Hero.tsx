@@ -45,7 +45,9 @@ const Hero = ({ layoutMode = "compact" }: HeroProps) => {
           layoutMode={layoutMode}
           header={
             <TerminalHeader
-              name="Nic Dan Cos"
+              name="NicDanCos"
+              location="Dubai"
+              role="AI Facilitator"
               titles={rotatingTitles}
               rotationInterval={9000}
             />

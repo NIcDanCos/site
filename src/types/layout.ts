@@ -73,6 +73,7 @@ export interface LayoutConfig extends GeneralTokens {
   terminalColors: HeroTokens['terminalColors'];
   separator: HeroTokens['separator'];
   codeboxHeight: HeroTokens['codeboxHeight'];
+  logo: HeroTokens['logo'];
   terminalText: HeroTokens['terminalText'];
   codeText: HeroTokens['codeText'];
   effects: HeroTokens['effects'];
@@ -135,6 +136,8 @@ export const LAYOUT_CONSTANTS: LayoutConfig = {
 
   separator: HERO_TOKENS.separator,
   codeboxHeight: HERO_TOKENS.codeboxHeight,
+
+  logo: HERO_TOKENS.logo,
 
   terminalText: HERO_TOKENS.terminalText,
   codeText: HERO_TOKENS.codeText,
