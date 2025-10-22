@@ -87,7 +87,7 @@ export const TerminalHeader = ({
           <div className="flex items-center gap-2">
             <Logo
               size="terminal"
-              imageSrc="/assets/logo/nic.png"
+              imageSrc="/assets/logo/nic-mob-gradient.png"
               objectFit="cover"
               rounded="sm"
               alt="Site Logo"

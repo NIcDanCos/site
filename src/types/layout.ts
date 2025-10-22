@@ -5,36 +5,53 @@
  * LAYOUT_CONSTANTS export for easy access throughout the application.
  *
  * ORGANIZATION:
- * - layout/general.ts  - Breakpoints, max-widths, component heights
- * - layout/navbar.ts   - All navbar tokens (spacing, icons, colors)
- * - layout/hero.ts     - Hero + terminal tokens (buttons, codebox, effects)
- * - layout/footer.ts   - All footer tokens (spacing, icons, text)
+ * - layout/general.ts      - Breakpoints, max-widths, component heights (legacy)
+ * - layout/navbar.ts       - All navbar tokens (spacing, icons, colors)
+ * - layout/hero.ts         - Hero + terminal tokens (buttons, codebox, effects)
+ * - layout/footer.ts       - All footer tokens (spacing, icons, text)
+ * - layout/breakpoints.ts  - Custom responsive breakpoints (NEW)
+ * - layout/typography.ts   - Font sizes, weights, line heights (NEW)
+ * - layout/spacing.ts      - Margins, padding, gaps (NEW)
+ * - layout/layout-system.ts - Containers, z-index, grid (NEW)
+ * - layout/responsive.ts   - Responsive utilities & helpers (NEW)
  *
  * HOW TO USE:
  *
- * Option 1 - Import everything (current pattern):
+ * Option 1 - Import legacy constants (backward compatible):
  * import { LAYOUT_CONSTANTS } from '@/types/layout';
  * className={LAYOUT_CONSTANTS.navbar.padding.horizontal}
  *
- * Option 2 - Import specific modules (cleaner for large components):
- * import { NAVBAR_TOKENS } from '@/types/layout/navbar';
- * className={NAVBAR_TOKENS.padding.horizontal}
+ * Option 2 - Import new token system (recommended):
+ * import { TYPOGRAPHY, SPACING, BREAKPOINTS } from '@/types/layout';
+ * className={TYPOGRAPHY.heading.h1.classes}
  *
- * Option 3 - Import just what you need:
- * import { LAYOUT_CONSTANTS } from '@/types/layout';
- * const { navbar, hero } = LAYOUT_CONSTANTS;
+ * Option 3 - Import from specific modules (tree-shaking friendly):
+ * import { NAVBAR_TOKENS } from '@/types/layout/navbar';
+ * import { TYPOGRAPHY } from '@/types/layout/typography';
  *
  * HOW TO MODIFY:
- * - To change navbar: Edit src/types/layout/navbar.ts
- * - To change hero/terminal: Edit src/types/layout/hero.ts
- * - To change footer: Edit src/types/layout/footer.ts
- * - To change breakpoints: Edit src/types/layout/general.ts
+ * - Component tokens: Edit navbar.ts, hero.ts, footer.ts
+ * - Typography: Edit layout/typography.ts
+ * - Spacing: Edit layout/spacing.ts
+ * - Breakpoints: Edit layout/breakpoints.ts
+ * - Layout system: Edit layout/layout-system.ts
  */
 
 import { GENERAL_TOKENS, type GeneralTokens } from './layout/general';
 import { NAVBAR_TOKENS, type NavbarTokens } from './layout/navbar';
 import { HERO_TOKENS, type HeroTokens } from './layout/hero';
 import { FOOTER_TOKENS, type FooterTokens } from './layout/footer';
+
+// ============================================================================
+// RE-EXPORT ALL NEW TOKEN SYSTEM (from layout/index.ts)
+// ============================================================================
+
+// Re-export everything from the new comprehensive token system
+export * from './layout/index';
+
+// ============================================================================
+// LEGACY EXPORTS (Backward Compatibility)
+// ============================================================================
 
 // Re-export ViewportLayout type for convenience
 export type { ViewportLayout } from './layout/hero';

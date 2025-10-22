@@ -270,7 +270,7 @@ export const HERO_TOKENS: HeroTokens = {
 
   codeboxHeight: {
     compact: {
-      mobile: "max-h-[45vh]",      // 👈 55% viewport height on mobile compact
+      mobile: "max-h-[40vh]",      // 👈 55% viewport height on mobile compact
       tablet: "sm:max-h-[55vh]",   // 👈 55% viewport height on tablet compact
     },
     full: "max-h-[40vh]",          // 👈 40% viewport height in full mode

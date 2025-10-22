@@ -25,7 +25,7 @@ const Navbar = () => {
               {/* Mobile Logo - Hidden on tablet/desktop (>= 768px) */}
               <Logo
                 size="navbar"
-                imageSrc="/assets/logo/nic.png"
+                imageSrc="/assets/logo/nic-mob.png"
                 alt="Site Logo"
                 className="md:hidden"
               />
