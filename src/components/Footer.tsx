@@ -1,5 +1,5 @@
 import { Github, Twitter, Mail, BookOpen } from "lucide-react";
-import { LAYOUT_CONSTANTS } from "@/types/layout";
+import { FOOTER_TOKENS } from "@/types/layout";
 
 const Footer = () => {
   const socialLinks = [
@@ -10,10 +10,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className={`bg-card border-t border-border ${LAYOUT_CONSTANTS.footer.padding.vertical}`}>
-      <div className={`container mx-auto ${LAYOUT_CONSTANTS.footer.padding.horizontal} text-center`}>
-        <p className={`text-foreground/70 ${LAYOUT_CONSTANTS.footerText} ${LAYOUT_CONSTANTS.footer.copyrightMargin}`}>© 2025 Nic Dan Cos</p>
-        <div className={`flex items-center justify-center ${LAYOUT_CONSTANTS.footer.socialIconGap}`}>
+    <footer className={`bg-card border-t border-border ${FOOTER_TOKENS.padding.vertical}`}>
+      <div className={`container mx-auto ${FOOTER_TOKENS.padding.horizontal} text-center`}>
+        <p className={`text-foreground/70 ${FOOTER_TOKENS.footerText} ${FOOTER_TOKENS.copyrightMargin}`}>© 2025 Nic Dan Cos</p>
+        <div className={`flex items-center justify-center ${FOOTER_TOKENS.socialIconGap}`}>
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return (
@@ -22,10 +22,10 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-foreground/60 hover:text-primary transition-colors ${LAYOUT_CONSTANTS.iconSizes.padding}`}
+                className={`text-foreground/60 hover:text-primary transition-colors ${FOOTER_TOKENS.iconSizes.padding}`}
                 aria-label={social.label}
               >
-                <Icon className={LAYOUT_CONSTANTS.iconSizes.socialFooter} />
+                <Icon className={FOOTER_TOKENS.iconSizes.socialFooter} />
               </a>
             );
           })}
