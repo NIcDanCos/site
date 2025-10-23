@@ -54,7 +54,7 @@ export const Logo = ({
         return `${LAYOUT_CONSTANTS.iconSizes.logo.mobile} ${LAYOUT_CONSTANTS.iconSizes.logo.tablet}`;
       case "terminal":
         // Use centralized tokens for terminal logo sizing
-        return `${LAYOUT_CONSTANTS.logo.terminal.container.mobile} ${LAYOUT_CONSTANTS.logo.terminal.container.midMobile} ${LAYOUT_CONSTANTS.logo.terminal.container.tablet}`;
+        return LAYOUT_CONSTANTS.logo.terminal.container.classes;
       default:
         return `${LAYOUT_CONSTANTS.iconSizes.logo.mobile} ${LAYOUT_CONSTANTS.iconSizes.logo.tablet}`;
     }
@@ -66,7 +66,7 @@ export const Logo = ({
         return `${LAYOUT_CONSTANTS.logoText.mobile} ${LAYOUT_CONSTANTS.logoText.tablet}`;
       case "terminal":
         // Use centralized tokens for terminal logo text
-        return `${LAYOUT_CONSTANTS.logo.terminal.text.mobile} ${LAYOUT_CONSTANTS.logo.terminal.text.midMobile} ${LAYOUT_CONSTANTS.logo.terminal.text.tablet}`;
+        return LAYOUT_CONSTANTS.logo.terminal.text.classes;
       default:
         return `${LAYOUT_CONSTANTS.logoText.mobile} ${LAYOUT_CONSTANTS.logoText.tablet}`;
     }

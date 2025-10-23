@@ -33,7 +33,7 @@ const Navbar = () => {
               {/* Tablet/Desktop Logo - Hidden on mobile (< 768px) */}
               <Logo
                 size="navbar"
-                imageSrc="/assets/logo/logo-desktop.svg"
+                imageSrc="/assets/logo/logo-mobile.svg"
                 alt="Site Logo"
                 className="hidden md:block"
                 rounded="sm"

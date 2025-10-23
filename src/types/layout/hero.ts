@@ -136,14 +136,10 @@ export interface HeroTokens {
   logo: {
     terminal: {
       container: {
-        mobile: string;      // Logo container size < 480px (e.g., "w-[15px] h-[15px]")
-        midMobile: string;   // Logo container size ≥ 480px (e.g., "min-[480px]:w-[18px] min-[480px]:h-[18px]")
-        tablet: string;      // Logo container size ≥ 640px (e.g., "min-[640px]:w-6 min-[640px]:h-6")
+        classes: string;     // Responsive container classes for all breakpoints
       };
       text: {
-        mobile: string;      // Logo text size < 480px (e.g., "text-[10px]")
-        midMobile: string;   // Logo text size ≥ 480px (e.g., "min-[480px]:text-[12px]")
-        tablet: string;      // Logo text size ≥ 640px (e.g., "min-[640px]:text-sm")
+        classes: string;     // Responsive text classes for all breakpoints (fallback "LOGO")
       };
     };
   };
@@ -155,14 +151,10 @@ export interface HeroTokens {
   /** Terminal header text sizes (@ symbol, name, prompt) */
   terminalText: {
     prompt: {
-      mobile: string;      // Font size < 480px (e.g., "text-[15px]")
-      midMobile: string;   // Font size ≥ 480px (e.g., "min-[480px]:text-[18px]")
-      tablet: string;      // Font size ≥ 640px (e.g., "min-[640px]:text-2xl")
+      classes: string;     // Responsive classes for all breakpoints
     };
     title: {
-      mobile: string;      // Rotating title < 480px (e.g., "text-[14px]")
-      midMobile: string;   // Rotating title ≥ 480px (e.g., "min-[480px]:text-[17px]")
-      tablet: string;      // Rotating title ≥ 640px (e.g., "min-[640px]:text-[23px]")
+      classes: string;     // Responsive classes for all breakpoints
     };
   };
 
@@ -285,14 +277,14 @@ export const HERO_TOKENS: HeroTokens = {
   logo: {
     terminal: {
       container: {
-        mobile: "w-[45px] h-[25px]",                                      // 👈 15px square on mobile (matches prompt text)
-        midMobile: "min-[480px]:w-[50px] min-[480px]:h-[35px]",          // 👈 18px square at 480px+
-        tablet: "min-[640px]:w-10 min-[640px]:h-6",                       // 👈 24px square at 640px+ (matches text-2xl)
+        // Logo container sizing - scales with terminal text
+        classes: "w-8 h-4 xs:w-12 xs:h-7 xsm:w-14 xsm:h-8 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14",
+        // 👈 40×24px → 48×28px → 56×32px → 64×40px → 80×48px → 96×56px
       },
       text: {
-        mobile: "text-[10px]",                     // 👈 10px "LOGO" text on mobile
-        midMobile: "min-[480px]:text-[12px]",      // 👈 12px at 480px+
-        tablet: "min-[640px]:text-sm",             // 👈 14px at 640px+
+        // Fallback "LOGO" text sizing
+        classes: "text-[10px] xs:text-xs xsm:text-sm sm:text-base md:text-lg",
+        // 👈 10px → 12px → 14px → 16px → 18px
       },
     },
   },
@@ -305,19 +297,19 @@ export const HERO_TOKENS: HeroTokens = {
 
   terminalText: {
     prompt: {
-      mobile: "text-[15px]",                  // 👈 15px for @, name, > on mobile
-      midMobile: "min-[480px]:text-[18px]",   // 👈 18px at 480px+
-      tablet: "min-[640px]:text-2xl",         // 👈 24px at 640px+
+      // Identity line (@portfolio, name) - responsive across all breakpoints
+      classes: "text-sm xs:text-lg xsm:text-lg sm:text-xl md:text-2xl lg:text-3xl",
+      // 👈 14px → 16px → 18px → 20px → 24px → 30px
     },
     title: {
-      mobile: "text-[14px]",                  // 👈 14px rotating title on mobile
-      midMobile: "min-[480px]:text-[17px]",   // 👈 17px at 480px+
-      tablet: "min-[640px]:text-[23px]",      // 👈 23px at 640px+
+      // Role and rotating titles - responsive across all breakpoints
+      classes: "text-xs xs:text-sm xsm:text-base sm:text-lg md:text-0.5xl lg:text-1.5xl",
+      // 👈 14px → 16px → 16px → 18px → 20px → 24px
     },
   },
 
   codeText: {
-    mobile: "text-[13px]",            // 👈 13px code text on small mobile
+    mobile: "text-[12px]",            // 👈 13px code text on small mobile
     midMobile: "min-[375px]:text-base", // 👈 16px at 375px+
     tablet: "sm:text-lg",             // 👈 18px at 640px+
   },
