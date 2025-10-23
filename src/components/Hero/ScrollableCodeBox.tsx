@@ -83,7 +83,7 @@ export const ScrollableCodeBox = ({
 
       {/* Top gradient fade - appears when scrolled down */}
       <div
-        className={`absolute left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 ${header ? 'top-[46px] min-[480px]:top-[52px] sm:top-[60px]' : 'top-0 rounded-t-lg'}`}
+        className={`absolute left-0 right-0 h-10 pointer-events-none transition-opacity duration-300 z-10 ${header ? 'top-[46px] xmd:top-[52px] sm:top-[60px]' : 'top-0 rounded-t-lg'}`}
         style={{
           background: HERO_TOKENS.terminalColors.gradientFade,
           opacity: showTopGradient ? 0.9 : 0

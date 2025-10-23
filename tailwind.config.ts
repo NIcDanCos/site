@@ -8,21 +8,16 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    screens: {
-      'xxs': '320px',    // Extra small mobile (iPhone SE, older Android)
-      'xs': '375px',     // Small mobile (iPhone 12/13/14)
-      'xsm': '414px',    // Medium mobile (iPhone Plus, large Android)
-      'sm': '640px',     // Tablet portrait
-      'md': '768px',     // Tablet landscape
-      'lg': '1024px',    // Desktop/laptop
-      'xl': '1280px',    // Large desktop
-      '2xl': '1536px',   // Extra large desktop
     },
     extend: {
+      screens: {
+        'xxs': '320px',    // Extra small mobile (iPhone SE, older Android)
+        'xs': '375px',     // Small mobile (iPhone 12/13/14)
+        'xsm': '414px',    // Medium mobile (iPhone Plus, large Android)
+        'xmd': '480px',    // Extra large phones, phablets
+        'tablet-xs': '540px',   // Large phones landscape, small tablets
+        'tablet-md': '680px',   // Medium tablets, social sidebar breakpoint
+      },
       fontFamily: {
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },

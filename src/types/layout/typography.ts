@@ -310,9 +310,9 @@ export const TYPOGRAPHY: TypographyTokens = {
     },
     terminal: {
       mobile: 'text-[13px]',                    // 👈 13px on mobile
-      tablet: 'min-[375px]:text-base',          // 👈 16px at 375px+
+      tablet: 'xs:text-base',          // 👈 16px at 375px+
       desktop: 'sm:text-lg',                    // 👈 18px at 640px+
-      classes: 'text-[13px] min-[375px]:text-base sm:text-lg',
+      classes: 'text-[13px] xs:text-base sm:text-lg',
     },
   },
 

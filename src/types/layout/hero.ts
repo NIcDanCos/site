@@ -298,8 +298,9 @@ export const HERO_TOKENS: HeroTokens = {
   terminalText: {
     prompt: {
       // Identity line (@portfolio, name) - responsive across all breakpoints
-      classes: "text-sm xs:text-lg xsm:text-lg sm:text-xl md:text-2xl lg:text-3xl",
-      // 👈 14px → 16px → 18px → 20px → 24px → 30px
+      // Increased by ~20% for better visibility
+      classes: "text-base xs:text-xl xsm:text-xl sm:text-2xl md:text-3xl lg:text-4xl",
+      // 👈 16px → 20px → 20px → 24px → 30px → 36px
     },
     title: {
       // Role and rotating titles - responsive across all breakpoints
@@ -310,7 +311,7 @@ export const HERO_TOKENS: HeroTokens = {
 
   codeText: {
     mobile: "text-[12px]",            // 👈 13px code text on small mobile
-    midMobile: "min-[375px]:text-base", // 👈 16px at 375px+
+    midMobile: "xs:text-base", // 👈 16px at 375px+
     tablet: "sm:text-lg",             // 👈 18px at 640px+
   },
 

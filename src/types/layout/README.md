@@ -122,7 +122,7 @@ getMediaQuery(768)            // '@media (min-width: 768px)'
 
 **Categories:**
 - **Mobile**: `xsmall` (320px) to `xlarge` (480px)
-- **Tablet**: `small` (640px) to `large` (900px)
+- **Tablet**: `small` (540px) to `large` (900px)
 - **Desktop**: `small` (1024px) to `xlarge` (1920px)
 - **Height**: `short` (600px) to `xtall` (1080px)
 - **Special**: `foldable`, `fullHD`, `ultraWide`

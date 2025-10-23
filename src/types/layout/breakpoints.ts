@@ -47,10 +47,11 @@ export interface BreakpointTokens {
   };
 
   // ============================================================================
-  // TABLET BREAKPOINTS (640px - 1023px)
+  // TABLET BREAKPOINTS (540px - 1023px)
   // ============================================================================
 
   tablet: {
+    xsmall: number;    // Extra small tablets / large phones landscape
     small: number;     // Small tablets portrait (e.g., iPad mini) - same as Tailwind 'sm'
     medium: number;    // Medium tablets landscape - same as Tailwind 'md'
     large: number;     // Large tablets (e.g., iPad Pro 11")
@@ -115,6 +116,7 @@ export const BREAKPOINTS: BreakpointTokens = {
   // Tip: Use for switching between compact and expanded layouts
 
   tablet: {
+    xsmall: 540,   // 👈 Large phones landscape, very small tablets
     small: 640,    // 👈 Tailwind 'sm' - iPad mini portrait
     medium: 768,   // 👈 Tailwind 'md' - iPad portrait, tablets landscape
     large: 900,    // 👈 iPad Pro 11" portrait
