@@ -56,6 +56,7 @@ import { GENERAL_TOKENS } from './general';
 import { NAVBAR_TOKENS } from './navbar';
 import { HERO_TOKENS } from './hero';
 import { FOOTER_TOKENS } from './footer';
+import { PROJECTS_TOKENS } from './projects';
 
 // ============================================================================
 // CORE TOKEN EXPORTS
@@ -161,6 +162,12 @@ export {
   type FooterTokens,
 } from './footer';
 
+// Projects tokens
+export {
+  PROJECTS_TOKENS,
+  type ProjectsTokens,
+} from './projects';
+
 // ============================================================================
 // LEGACY EXPORTS (Backward Compatibility)
 // ============================================================================
@@ -212,6 +219,7 @@ export const TOKENS = {
   navbar: NAVBAR_TOKENS,
   hero: HERO_TOKENS,
   footer: FOOTER_TOKENS,
+  projects: PROJECTS_TOKENS,
   general: GENERAL_TOKENS,
 } as const;
 

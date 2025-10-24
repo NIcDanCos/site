@@ -1,128 +1,73 @@
+/**
+ * Projects Page
+ * Displays projects in terminal JSON format
+ * Uses ProjectsTerminal component for cohesive design
+ */
+
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ProjectCard from "@/components/ProjectCard";
+import { useNavigate } from "react-router-dom";
+import { ProjectsTerminal } from "@/components/Projects/ProjectsTerminal";
 import { EmailGateModal } from "@/components/EmailGateModal";
 import { useProjectAccess } from "@/hooks/useProjectAccess";
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  techStack: string[];
-  thumbnail: string;
-  githubUrl?: string;
-  demoUrl: string;
-}
-
-const projects: Project[] = [
-  {
-    id: "project-1",
-    title: "AI Dashboard",
-    description: "A modern analytics dashboard with real-time data visualization and AI-powered insights",
-    techStack: ["React", "TypeScript", "Tailwind", "Recharts"],
-    thumbnail: "/placeholder.svg",
-    githubUrl: "https://github.com",
-    demoUrl: "https://example.com/demo1",
-  },
-  {
-    id: "project-2",
-    title: "Task Manager Pro",
-    description: "Collaborative task management platform with team features and time tracking",
-    techStack: ["React", "Supabase", "TanStack Query"],
-    thumbnail: "/placeholder.svg",
-    githubUrl: "https://github.com",
-    demoUrl: "https://example.com/demo2",
-  },
-  {
-    id: "project-3",
-    title: "E-Commerce Platform",
-    description: "Full-featured online store with payment processing and inventory management",
-    techStack: ["React", "Stripe", "PostgreSQL"],
-    thumbnail: "/placeholder.svg",
-    demoUrl: "https://example.com/demo3",
-  },
-  {
-    id: "project-4",
-    title: "Portfolio Builder",
-    description: "No-code portfolio builder with customizable themes and drag-and-drop interface",
-    techStack: ["React", "TypeScript", "Tailwind"],
-    thumbnail: "/placeholder.svg",
-    githubUrl: "https://github.com",
-    demoUrl: "https://example.com/demo4",
-  },
-];
+import { useViewportLayout } from "@/hooks/use-viewport-layout";
+import { PROJECTS_TOKENS } from "@/types/layout/projects";
 
 const Projects = () => {
+  const navigate = useNavigate();
+  const layout = useViewportLayout();
   const [showEmailGate, setShowEmailGate] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { isAuthenticated, grantProjectAccess } = useProjectAccess();
 
-  const handleLaunchDemo = async (project: Project) => {
+  // Handle demo launch with email gate
+  const handleLaunchDemo = async (demoUrl: string) => {
     if (!isAuthenticated) {
-      setSelectedProject(project);
       setShowEmailGate(true);
       return;
     }
 
     // Grant access and open demo
-    const hasAccess = await grantProjectAccess(project.id);
-    if (hasAccess && project.demoUrl) {
-      window.open(project.demoUrl, '_blank');
+    // Note: We're using a generic project ID here since we don't have individual project IDs in the terminal format
+    // You may want to enhance this to track which project was clicked
+    const hasAccess = await grantProjectAccess('demo-access');
+    if (hasAccess && demoUrl) {
+      window.open(demoUrl, '_blank');
     }
   };
 
-  const handleEmailGateSuccess = async () => {
-    if (selectedProject) {
-      const hasAccess = await grantProjectAccess(selectedProject.id);
-      if (hasAccess && selectedProject.demoUrl) {
-        window.open(selectedProject.demoUrl, '_blank');
-      }
-    }
-    setShowEmailGate(false);
+  const handleBackHome = () => {
+    navigate('/');
+  };
+
+  const handleHomeClick = () => {
+    navigate('/');
   };
 
   return (
-    <div className="min-h-screen bg-background font-mono flex flex-col">
-      <Navbar />
-      
-      <main className="flex-1 pt-44 sm:pt-44 pb-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-5xl md:text-5xl font-bold mb-4">
-              <span className="text-foreground">Projects</span>
-              <span className="text-primary animate-cursor-blink">_</span>
-            </h1>
-            <p className="text-muted-foreground text-lg">
-              Explore my work and launch live demos
-            </p>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="mx-auto" style={{ maxWidth: '680px' }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 animate-fade-in">
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onLaunchDemo={handleLaunchDemo}
-                />
-              ))}
-            </div>
-          </div>
+    <div
+      className={`min-h-screen bg-background font-mono flex flex-col ${PROJECTS_TOKENS.projects.contentPadding.classes}`}
+      style={{
+        paddingTop: PROJECTS_TOKENS.projects.pageSpacing.mobile,
+        paddingBottom: PROJECTS_TOKENS.projects.pageSpacing.mobile,
+      }}
+    >
+      <main className="flex-1 flex items-center justify-center">
+        <div className="w-full max-w-4xl mx-auto">
+          <ProjectsTerminal
+            name="NicDanCos"
+            location="Dubai"
+            onHomeClick={handleHomeClick}
+            onBackHome={handleBackHome}
+            onLaunchDemo={handleLaunchDemo}
+            githubUrl="https://github.com"
+            layoutMode={layout}
+          />
         </div>
       </main>
 
-      <Footer />
-
       {/* Email Gate Modal */}
-      <EmailGateModal 
-        open={showEmailGate} 
-        onOpenChange={(open) => {
-          setShowEmailGate(open);
-          if (!open) setSelectedProject(null);
-        }}
+      <EmailGateModal
+        open={showEmailGate}
+        onOpenChange={setShowEmailGate}
       />
     </div>
   );

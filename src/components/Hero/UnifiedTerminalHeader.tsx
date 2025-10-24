@@ -43,6 +43,7 @@ interface UnifiedTerminalHeaderProps {
   titles: string[];
   rotationInterval?: number;
   onHomeClick?: () => void;
+  showProjectsMode?: boolean; // If true, shows "> Projects" instead of role/titles
 }
 
 export const UnifiedTerminalHeader = ({
@@ -51,6 +52,7 @@ export const UnifiedTerminalHeader = ({
   role,
   titles,
   rotationInterval = 9000,
+  showProjectsMode = false,
 }: UnifiedTerminalHeaderProps) => {
   return (
     <div className={`font-mono overflow-hidden ${HERO_TOKENS.terminal.header.padding.mobile} ${HERO_TOKENS.terminal.header.padding.tablet}`}>
@@ -66,22 +68,32 @@ export const UnifiedTerminalHeader = ({
             </span>
           </div>
 
-          {/* Line 2: Role + Rotating Titles */}
+          {/* Line 2: Role + Rotating Titles OR Projects Mode */}
           <div className="flex items-center min-w-0">
             <span className={`text-primary animate-cursor-blink font-bold ${HERO_TOKENS.terminalText.title.classes} mr-2 flex-shrink-0`}>
               &gt;
             </span>
-            <span className={`text-primary font-bold ${HERO_TOKENS.terminalText.title.classes} flex-shrink-0`}>
-              {role}
-            </span>
-            <span className={`text-muted-foreground font-normal ${HERO_TOKENS.terminalText.title.classes} flex-shrink-0`}>
-              /
-            </span>
-            <AnimatedRotatingTitle
-              titles={titles}
-              rotationInterval={rotationInterval}
-              className={`text-amber-400 font-normal ${HERO_TOKENS.terminalText.title.classes} whitespace-nowrap overflow-hidden text-ellipsis min-w-0`}
-            />
+            {showProjectsMode ? (
+              // Projects Mode: Show "Projects" larger and without slash
+              <span className={`text-primary font-bold flex-shrink-0 text-lg sm:text-xl md:text-2xl`}>
+                Projects
+              </span>
+            ) : (
+              // Default Mode: Show role/rotating titles
+              <>
+                <span className={`text-primary font-bold ${HERO_TOKENS.terminalText.title.classes} flex-shrink-0`}>
+                  {role}
+                </span>
+                <span className={`text-muted-foreground font-normal ${HERO_TOKENS.terminalText.title.classes} flex-shrink-0`}>
+                  /
+                </span>
+                <AnimatedRotatingTitle
+                  titles={titles}
+                  rotationInterval={rotationInterval}
+                  className={`text-amber-400 font-normal ${HERO_TOKENS.terminalText.title.classes} whitespace-nowrap overflow-hidden text-ellipsis min-w-0`}
+                />
+              </>
+            )}
           </div>
         </div>
 
