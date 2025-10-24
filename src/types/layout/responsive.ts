@@ -37,11 +37,71 @@ import { BREAKPOINTS } from './breakpoints';
 export type BreakpointKey = 'mobile' | 'tablet' | 'desktop';
 export type DeviceType = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
+/**
+ * Extended responsive value interface with granular breakpoint control.
+ *
+ * USAGE PHILOSOPHY:
+ * - Use as many or as few breakpoints as needed
+ * - `mobile` is required (mobile-first fallback)
+ * - All other breakpoints are optional
+ * - Values cascade: mobile value applies until overridden at a larger breakpoint
+ *
+ * @example
+ * // Simple: 3 breakpoints
+ * const padding: ExtendedResponsiveValue<string> = {
+ *   mobile: 'p-4',
+ *   tablet: 'sm:p-6',
+ *   desktop: 'lg:p-8',
+ * };
+ *
+ * @example
+ * // Granular: All 10 breakpoints for surgical control
+ * const alignment: ExtendedResponsiveValue<string> = {
+ *   mobile: 'items-start',
+ *   smallMobile: 'items-start',
+ *   largeMobile: 'items-start',
+ *   smallTablet: 'items-center',
+ *   tablet: 'items-center',
+ *   largeTablet: 'items-center',
+ *   smallDesktop: 'items-center',
+ *   desktop: 'items-center',
+ *   largeDesktop: 'items-center',
+ *   xlDesktop: 'items-center',
+ * };
+ */
+export interface ExtendedResponsiveValue<T> {
+  /** Base mobile value (REQUIRED) - 375px - Mobile-first fallback */
+  mobile: T;
+
+  /** Optional breakpoint overrides - use only what you need */
+  smallMobile?: T;    // 360px - Extra small phones (iPhone SE)
+  largeMobile?: T;    // 414px - Large phones (iPhone Pro Max)
+  smallTablet?: T;    // 540px - Large phones landscape, small tablets
+  tablet?: T;         // 640px - Tailwind 'sm' - Small tablets portrait
+  largeTablet?: T;    // 768px - Tailwind 'md' - Tablets landscape
+  smallDesktop?: T;   // 1024px - Tailwind 'lg' - Small laptops
+  desktop?: T;        // 1280px - Tailwind 'xl' - Standard desktops
+  largeDesktop?: T;   // 1536px - Tailwind '2xl' - Large desktops
+  xlDesktop?: T;      // 1920px - Full HD displays
+
+  /** Combined Tailwind classes (auto-generated or manually provided) */
+  classes?: string;
+}
+
+/**
+ * @deprecated Use ExtendedResponsiveValue instead for full breakpoint control.
+ * This type is maintained for backward compatibility only.
+ */
 export interface ResponsiveValue<T> {
   mobile: T;
   tablet?: T;
   desktop?: T;
 }
+
+/**
+ * Union type for values that can be static or responsive
+ */
+export type StaticOrResponsive<T> = T | ExtendedResponsiveValue<T>;
 
 export interface ViewportInfo {
   width: number;
@@ -213,19 +273,20 @@ export const combineResponsive = (...classes: (string | undefined | false)[]): s
   classes.filter(Boolean).join(' ');
 
 /**
- * Build responsive classes from a value object
+ * Build responsive classes from a value object (legacy 3-breakpoint version)
+ * @deprecated Use buildResponsiveClasses with ExtendedResponsiveValue instead
  * @param values - Object with mobile, tablet, desktop values
  * @returns Combined responsive class string
  *
  * @example
- * const classes = buildResponsiveClasses({
+ * const classes = buildResponsiveClassesLegacy({
  *   mobile: 'text-sm',
  *   tablet: 'sm:text-base',
  *   desktop: 'lg:text-lg'
  * });
  * // Returns: 'text-sm sm:text-base lg:text-lg'
  */
-export const buildResponsiveClasses = (values: ResponsiveValue<string>): string => {
+export const buildResponsiveClassesLegacy = (values: ResponsiveValue<string>): string => {
   const { mobile, tablet, desktop } = values;
   return combineResponsive(mobile, tablet, desktop);
 };
@@ -302,6 +363,191 @@ export const responsiveArbitrary = (
   }
 
   return classes.join(' ');
+};
+
+// ============================================================================
+// EXTENDED RESPONSIVE VALUE BUILDERS
+// ============================================================================
+
+/**
+ * Create a responsive value with type safety and optional breakpoints.
+ * Use this helper to construct ExtendedResponsiveValue objects.
+ *
+ * @param values - Responsive values with mobile (required) and optional breakpoint overrides
+ * @returns ExtendedResponsiveValue with all provided breakpoints
+ *
+ * @example
+ * const padding = responsive({
+ *   mobile: 'p-4',
+ *   tablet: 'sm:p-6',
+ *   desktop: 'lg:p-8',
+ * });
+ */
+export const responsive = <T>(
+  values: ExtendedResponsiveValue<T>
+): ExtendedResponsiveValue<T> => {
+  return { ...values };
+};
+
+/**
+ * Create a static value (no responsive behavior).
+ * Use for values that don't need breakpoint variations.
+ *
+ * @param value - Static value
+ * @returns The value as-is
+ *
+ * @example
+ * const borderRadius = staticValue('rounded-lg');
+ */
+export const staticValue = <T>(value: T): T => value;
+
+/**
+ * Build Tailwind classes from ExtendedResponsiveValue.
+ * Automatically generates responsive classes for all defined breakpoints.
+ *
+ * @param values - ExtendedResponsiveValue object
+ * @param prefix - Optional prefix for each class (e.g., 'text' for font sizes)
+ * @param formatter - Optional function to format values before generating classes
+ * @returns Combined Tailwind class string
+ *
+ * @example
+ * const classes = buildResponsiveClasses(
+ *   { mobile: '16px', tablet: '18px', desktop: '20px' },
+ *   'text',
+ *   (val) => `[${val}]`
+ * );
+ * // Returns: 'text-[16px] sm:text-[18px] lg:text-[20px]'
+ */
+export const buildResponsiveClasses = <T>(
+  values: ExtendedResponsiveValue<T>,
+  prefix?: string,
+  formatter?: (val: T) => string
+): string => {
+  const classes: string[] = [];
+
+  // Helper to format a value
+  const format = (val: T): string => {
+    const formatted = formatter ? formatter(val) : String(val);
+    return prefix ? `${prefix}-${formatted}` : formatted;
+  };
+
+  // Base mobile class (always present)
+  classes.push(format(values.mobile));
+
+  // Add optional breakpoint classes only if defined
+  if (values.smallMobile !== undefined) {
+    classes.push(`min-[360px]:${format(values.smallMobile)}`);
+  }
+  if (values.largeMobile !== undefined) {
+    classes.push(`min-[414px]:${format(values.largeMobile)}`);
+  }
+  if (values.smallTablet !== undefined) {
+    classes.push(`min-[540px]:${format(values.smallTablet)}`);
+  }
+  if (values.tablet !== undefined) {
+    classes.push(`sm:${format(values.tablet)}`);
+  }
+  if (values.largeTablet !== undefined) {
+    classes.push(`md:${format(values.largeTablet)}`);
+  }
+  if (values.smallDesktop !== undefined) {
+    classes.push(`lg:${format(values.smallDesktop)}`);
+  }
+  if (values.desktop !== undefined) {
+    classes.push(`xl:${format(values.desktop)}`);
+  }
+  if (values.largeDesktop !== undefined) {
+    classes.push(`2xl:${format(values.largeDesktop)}`);
+  }
+  if (values.xlDesktop !== undefined) {
+    classes.push(`min-[1920px]:${format(values.xlDesktop)}`);
+  }
+
+  return classes.join(' ');
+};
+
+/**
+ * Combine multiple ExtendedResponsiveValue objects into one.
+ * Useful for merging spacing, sizing, and other responsive properties.
+ *
+ * @param responsiveValues - Array of ExtendedResponsiveValue objects to combine
+ * @param separator - Optional separator between values (default: ' ')
+ * @returns Combined ExtendedResponsiveValue
+ *
+ * @example
+ * const padding = { mobile: 'p-4', tablet: 'sm:p-6' };
+ * const margin = { mobile: 'm-2', tablet: 'sm:m-4' };
+ * const combined = combineResponsiveValues([padding, margin]);
+ * // mobile: 'p-4 m-2', tablet: 'sm:p-6 sm:m-4'
+ */
+export const combineResponsiveValues = <T extends string>(
+  responsiveValues: ExtendedResponsiveValue<T>[],
+  separator: string = ' '
+): ExtendedResponsiveValue<T> => {
+  const combined: ExtendedResponsiveValue<T> = {
+    mobile: responsiveValues.map(v => v.mobile).join(separator) as T,
+  };
+
+  // Combine each optional breakpoint if any value defines it
+  const breakpoints: (keyof ExtendedResponsiveValue<T>)[] = [
+    'smallMobile',
+    'largeMobile',
+    'smallTablet',
+    'tablet',
+    'largeTablet',
+    'smallDesktop',
+    'desktop',
+    'largeDesktop',
+    'xlDesktop',
+  ];
+
+  breakpoints.forEach((bp) => {
+    const values = responsiveValues
+      .map(v => v[bp])
+      .filter((v): v is T => v !== undefined);
+
+    if (values.length > 0) {
+      combined[bp] = values.join(separator) as T;
+    }
+  });
+
+  // Generate combined classes
+  combined.classes = buildResponsiveClasses(combined);
+
+  return combined;
+};
+
+/**
+ * Map a function over all breakpoint values in an ExtendedResponsiveValue.
+ *
+ * @param values - ExtendedResponsiveValue to transform
+ * @param fn - Function to apply to each value
+ * @returns New ExtendedResponsiveValue with transformed values
+ *
+ * @example
+ * const sizes = { mobile: 4, tablet: 6, desktop: 8 };
+ * const paddings = mapResponsiveValue(sizes, (n) => `p-${n}`);
+ * // { mobile: 'p-4', tablet: 'p-6', desktop: 'p-8' }
+ */
+export const mapResponsiveValue = <T, U>(
+  values: ExtendedResponsiveValue<T>,
+  fn: (value: T) => U
+): ExtendedResponsiveValue<U> => {
+  const mapped: ExtendedResponsiveValue<U> = {
+    mobile: fn(values.mobile),
+  };
+
+  if (values.smallMobile !== undefined) mapped.smallMobile = fn(values.smallMobile);
+  if (values.largeMobile !== undefined) mapped.largeMobile = fn(values.largeMobile);
+  if (values.smallTablet !== undefined) mapped.smallTablet = fn(values.smallTablet);
+  if (values.tablet !== undefined) mapped.tablet = fn(values.tablet);
+  if (values.largeTablet !== undefined) mapped.largeTablet = fn(values.largeTablet);
+  if (values.smallDesktop !== undefined) mapped.smallDesktop = fn(values.smallDesktop);
+  if (values.desktop !== undefined) mapped.desktop = fn(values.desktop);
+  if (values.largeDesktop !== undefined) mapped.largeDesktop = fn(values.largeDesktop);
+  if (values.xlDesktop !== undefined) mapped.xlDesktop = fn(values.xlDesktop);
+
+  return mapped;
 };
 
 // ============================================================================

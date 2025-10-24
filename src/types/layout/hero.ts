@@ -7,8 +7,9 @@
  * HOW TO ADJUST:
  *
  * HERO SECTION:
- * - topSpacing: Space above hero (pushes content down from navbar)
- * - contentPadding: Horizontal padding for hero content
+ * - alignment: Vertical alignment with 10 granular breakpoints for surgical control
+ * - topSpacing: Space above hero with 10 granular breakpoints
+ * - contentPadding: Horizontal padding (can be static or responsive)
  *
  * BUTTONS:
  * - height, padding, textSize: Control button appearance
@@ -30,8 +31,10 @@
  *
  * USAGE:
  * import { HERO_TOKENS } from '@/types/layout/hero';
- * className={HERO_TOKENS.hero.topSpacing.mobile}
+ * className={HERO_TOKENS.hero.alignment.classes}
  */
+
+import { ExtendedResponsiveValue } from './responsive';
 
 export type ViewportLayout = "compact" | "full";
 
@@ -40,33 +43,30 @@ export interface HeroTokens {
   // HERO SECTION SPACING
   // ============================================================================
 
-  /** Hero section spacing */
+  /** Hero section spacing with granular breakpoint control */
   hero: {
-    alignment: {
-      mobile: string;      // Vertical alignment < 540px (e.g., "items-start")
-      tablet: string;      // Vertical alignment ≥ 540px (e.g., "min-[540px]:items-center")
-    };
-    topSpacing: {
-      smallMobile: string; // Top spacing on small mobile < 540px (e.g., "pt-12")
-      mobile: string;      // Top spacing on mobile 540px-640px (e.g., "min-[540px]:pt-16")
-      tablet: string;      // Top spacing on tablet ≥ 768px (e.g., "md:pt-20")
-      desktop: string;     // Top spacing on desktop ≥ 1024px (e.g., "lg:pt-24")
-    };
-    contentPadding: string; // Horizontal padding (e.g., "px-6")
+    /** Vertical alignment across all 10 breakpoints for precise control */
+    alignment: ExtendedResponsiveValue<string>;
+
+    /** Top spacing across all 10 breakpoints for precise vertical positioning */
+    topSpacing: ExtendedResponsiveValue<string>;
+
+    /** Horizontal content padding - responsive for optimal spacing across devices */
+    contentPadding: ExtendedResponsiveValue<string>;
   };
 
   // ============================================================================
   // BUTTONS
   // ============================================================================
 
-  /** Button sizing */
+  /** Button sizing - responsive for different viewport tap targets */
   buttons: {
-    height: string;        // Button height (e.g., "h-11" = 44px)
-    padding: string;       // Horizontal padding (e.g., "px-8")
-    textSize: string;      // Text size (e.g., "text-sm")
+    height: ExtendedResponsiveValue<string>;   // Button height - responsive for optimal tap targets
+    padding: ExtendedResponsiveValue<string>;  // Button padding - responsive for comfortable spacing
+    textSize: ExtendedResponsiveValue<string>; // Button text size - responsive for readability
   };
 
-  /** Button colors */
+  /** Button colors (static - consistent across viewports) */
   buttonColors: {
     primary: {
       background: string;  // Primary button background (View Work)
@@ -86,26 +86,22 @@ export interface HeroTokens {
   /** Terminal component spacing */
   terminal: {
     header: {
-      padding: {
-        mobile: string;    // Header padding on mobile (e.g., "p-3")
-        tablet: string;    // Header padding on tablet+ (e.g., "sm:p-4")
-      };
-      elementGap: string;  // Gap between header elements (e.g., "gap-2")
+      /** Header padding - responsive for optimal spacing */
+      padding: ExtendedResponsiveValue<string>;
+
+      /** Gap between header elements - responsive for different screen densities */
+      elementGap: ExtendedResponsiveValue<string>;
     };
     content: {
-      padding: {
-        mobile: string;    // Content padding on mobile (e.g., "p-4")
-        tablet: string;    // Content padding on tablet+ (e.g., "sm:p-8")
-      };
+      /** Content padding - responsive for reading comfort */
+      padding: ExtendedResponsiveValue<string>;
     };
     footer: {
-      padding: {
-        mobile: string;    // Footer padding on mobile (e.g., "p-3")
-        tablet: string;    // Footer padding on tablet+ (e.g., "sm:p-4")
-      };
+      /** Footer padding - responsive for balanced spacing */
+      padding: ExtendedResponsiveValue<string>;
     };
-    borderRadius: string;  // Container border radius (e.g., "0.5rem")
-    gradientFadeHeight: string; // Top scroll gradient height (e.g., "h-10")
+    borderRadius: string;  // Container border radius (static - consistent across viewports)
+    gradientFadeHeight: ExtendedResponsiveValue<string>; // Gradient height - responsive for scroll indicators
   };
 
   /** Terminal colors */
@@ -118,34 +114,30 @@ export interface HeroTokens {
     gradientFade: string;      // Top scroll fade gradient
   };
 
-  /** Separator sizes */
+  /** Separator sizes - responsive for visual density */
   separator: {
-    vertical: string;      // Vertical separator height (e.g., "h-4")
-    horizontal: string;    // Horizontal separator width (e.g., "w-px")
+    vertical: ExtendedResponsiveValue<string>;     // Vertical separator height
+    horizontal: ExtendedResponsiveValue<string>;   // Horizontal separator width
   };
 
-  /** Codebox heights based on layout mode */
+  /** Codebox heights - responsive for optimal content display */
   codeboxHeight: {
-    compact: {
-      mobile: string;      // Compact mode < 640px (e.g., "max-h-[55vh]")
-      tablet: string;      // Compact mode ≥ 640px (e.g., "sm:max-h-[55vh]")
-    };
-    full: string;          // Full mode (> 1024px × 768px) (e.g., "max-h-[40vh]")
+    compact: ExtendedResponsiveValue<string>;  // Compact mode heights
+    full: ExtendedResponsiveValue<string>;     // Full mode heights
   };
 
   // ============================================================================
   // LOGO
   // ============================================================================
 
-  /** Terminal logo sizing to match text height */
+  /** Terminal logo sizing - responsive to match text height */
   logo: {
     terminal: {
-      container: {
-        classes: string;     // Responsive container classes for all breakpoints
-      };
-      text: {
-        classes: string;     // Responsive text classes for all breakpoints (fallback "LOGO")
-      };
+      /** Logo container sizing - responsive across all viewports */
+      container: ExtendedResponsiveValue<string>;
+
+      /** Logo fallback text sizing - responsive for consistency */
+      text: ExtendedResponsiveValue<string>;
     };
   };
 
@@ -153,22 +145,17 @@ export interface HeroTokens {
   // TYPOGRAPHY
   // ============================================================================
 
-  /** Terminal header text sizes (@ symbol, name, prompt) */
+  /** Terminal header text sizes - responsive for readability */
   terminalText: {
-    prompt: {
-      classes: string;     // Responsive classes for all breakpoints
-    };
-    title: {
-      classes: string;     // Responsive classes for all breakpoints
-    };
+    /** Prompt text (@ symbol, name) - responsive across all breakpoints */
+    prompt: ExtendedResponsiveValue<string>;
+
+    /** Title text (role, rotating titles) - responsive for hierarchy */
+    title: ExtendedResponsiveValue<string>;
   };
 
-  /** Code block text sizes */
-  codeText: {
-    mobile: string;        // Code text < 375px (e.g., "text-[13px]")
-    midMobile: string;     // Code text ≥ 375px (e.g., "min-[375px]:text-base")
-    tablet: string;        // Code text ≥ 640px (e.g., "sm:text-lg")
-  };
+  /** Code block text sizes - responsive for code readability */
+  codeText: ExtendedResponsiveValue<string>;
 
   // ============================================================================
   // EFFECTS
@@ -187,22 +174,66 @@ export const HERO_TOKENS: HeroTokens = {
   // ============================================================================
   // HERO SECTION SPACING
   // ============================================================================
-  // Controls the vertical alignment and spacing of hero content
-  // < 540px: Top-aligned with minimal spacing for mobile
-  // ≥ 540px: Vertically centered for tablet/desktop
+  // Controls the vertical alignment and spacing of hero content across all 10 breakpoints
+  //
+  // ALIGNMENT STRATEGY:
+  // - Mobile devices (≤ 414px): Top-aligned for better content accessibility
+  // - Small tablet+ (≥ 540px): Vertically centered for better visual balance
+  //
+  // TOP SPACING STRATEGY:
+  // - Progressively increases with viewport size
+  // - Accounts for navbar height and comfortable viewing distance
 
   hero: {
     alignment: {
-      mobile: "items-start",                  // 👈 Top-aligned on mobile (< 540px)
-      tablet: "min-[540px]:items-center",     // 👈 Centered at 540px+
+      // BASE (Required)
+      mobile: "items-start",                    // 👈 375px - Top-aligned (base)
+
+      // GRANULAR BREAKPOINTS (Optional)
+      smallMobile: "items-start",               // 👈 360px - Top-aligned (small phones)
+      largeMobile: "items-start",               // 👈 414px - Top-aligned (large phones)
+      smallTablet: "items-center",              // 👈 540px - Switch to centered
+      tablet: "items-center",                   // 👈 640px - Centered
+      largeTablet: "items-center",              // 👈 768px - Centered
+      smallDesktop: "items-center",             // 👈 1024px - Centered
+      desktop: "items-center",                  // 👈 1280px - Centered
+      largeDesktop: "items-center",             // 👈 1536px - Centered
+      xlDesktop: "items-center",                // 👈 1920px - Centered
+
+      // Auto-generated classes combining all breakpoints
+      classes: "items-start min-[540px]:items-center",
     },
+
     topSpacing: {
-      smallMobile: "pt-10",                   // small mobile (< 540px) - reduced for top-alignment
-      mobile: "min-[540px]:pt-28",            // 540px+ (centered layout)
-      tablet: "md:pt-32",                     // tablet (≥ 768px)
-      desktop: "lg:pt-40",                    // desktop (≥ 1024px)
+      // BASE (Required)
+      mobile: "pt-10",                          // 👈 375px - 40px top spacing (base)
+
+      // GRANULAR BREAKPOINTS (Optional)
+      smallMobile: "pt-8",                      // 👈 360px - 32px (compact for small screens)
+      largeMobile: "pt-12",                     // 👈 414px - 48px (slightly more space)
+      smallTablet: "pt-28",                     // 👈 540px - 112px (centered layout starts)
+      tablet: "pt-28",                          // 👈 640px - 112px (maintain centering)
+      largeTablet: "pt-32",                     // 👈 768px - 128px (more vertical space)
+      smallDesktop: "pt-40",                    // 👈 1024px - 160px (desktop spacing)
+      desktop: "pt-40",                         // 👈 1280px - 160px (maintain spacing)
+      largeDesktop: "pt-44",                    // 👈 1536px - 176px (large screen spacing)
+      xlDesktop: "pt-48",                       // 👈 1920px - 192px (maximum spacing)
+
+      // Auto-generated classes combining all breakpoints
+      classes: "pt-10 min-[360px]:pt-8 min-[414px]:pt-12 min-[540px]:pt-28 sm:pt-28 md:pt-32 lg:pt-40 xl:pt-40 2xl:pt-44 min-[1920px]:pt-48",
     },
-    contentPadding: "px-6",                   // 👈 24px horizontal padding
+
+    contentPadding: {
+      // BASE (Required)
+      mobile: "px-4",                           // 👈 375px - 16px horizontal (base)
+
+      // GRANULAR BREAKPOINTS (Optional - using 3-breakpoint pattern)
+      tablet: "px-6",                           // 👈 640px - 24px horizontal
+      desktop: "px-8",                          // 👈 1280px - 32px horizontal
+
+      // Auto-generated classes
+      classes: "px-4 sm:px-6 xl:px-8",
+    },
   },
 
   // ============================================================================
@@ -211,9 +242,36 @@ export const HERO_TOKENS: HeroTokens = {
   // Control the appearance and colors of hero CTA buttons
 
   buttons: {
-    height: "h-11",            // 👈 44px button height (comfortable tap target)
-    padding: "px-8",           // 👈 32px horizontal padding
-    textSize: "text-sm",       // 👈 14px text size
+    height: {
+      // BASE (Required)
+      mobile: "h-11",                           // 👈 375px - 44px height (base)
+
+      // GRANULAR BREAKPOINTS (Optional - using single breakpoint)
+      desktop: "h-12",                          // 👈 1280px - 48px height (larger buttons)
+
+      // Auto-generated classes
+      classes: "h-11 xl:h-12",
+    },
+    padding: {
+      // BASE (Required)
+      mobile: "px-6",                           // 👈 375px - 24px horizontal (base)
+
+      // GRANULAR BREAKPOINTS (Optional)
+      tablet: "px-8",                           // 👈 640px - 32px horizontal
+
+      // Auto-generated classes
+      classes: "px-6 sm:px-8",
+    },
+    textSize: {
+      // BASE (Required)
+      mobile: "text-sm",                        // 👈 375px - 14px text (base)
+
+      // GRANULAR BREAKPOINTS (Optional)
+      desktop: "text-base",                     // 👈 1280px - 16px text
+
+      // Auto-generated classes
+      classes: "text-sm xl:text-base",
+    },
   },
 
   buttonColors: {
@@ -236,25 +294,61 @@ export const HERO_TOKENS: HeroTokens = {
   terminal: {
     header: {
       padding: {
-        mobile: "p-3",         // 👈 12px padding on mobile
-        tablet: "sm:p-4",      // 👈 16px padding on tablet+
+        // BASE (Required)
+        mobile: "p-3",                          // 👈 375px - 12px all sides (base)
+
+        // GRANULAR BREAKPOINTS (Optional - using 2-breakpoint pattern)
+        tablet: "p-4",                          // 👈 640px - 16px all sides
+
+        // Auto-generated classes
+        classes: "p-3 sm:p-4",
       },
-      elementGap: "gap-2",     // 👈 8px gap between header elements
+      elementGap: {
+        // BASE (Required)
+        mobile: "gap-2",                        // 👈 375px - 8px gap (base)
+
+        // GRANULAR BREAKPOINTS (Optional - using 2-breakpoint pattern)
+        tablet: "gap-2",                        // 👈 640px - maintain 8px gap
+
+        // Auto-generated classes
+        classes: "gap-2",
+      },
     },
     content: {
       padding: {
-        mobile: "p-4",         // 👈 16px padding on mobile
-        tablet: "sm:p-8",      // 👈 32px padding on tablet+
+        // BASE (Required)
+        mobile: "p-4",                          // 👈 375px - 16px all sides (base)
+
+        // GRANULAR BREAKPOINTS (Optional - using 2-breakpoint pattern)
+        tablet: "p-4",                          // 👈 640px - maintain 16px
+
+        // Auto-generated classes
+        classes: "p-4",
       },
     },
     footer: {
       padding: {
-        mobile: "p-3",         // 👈 12px padding on mobile
-        tablet: "sm:p-4",      // 👈 16px padding on tablet+
+        // BASE (Required)
+        mobile: "p-3",                          // 👈 375px - 12px all sides (base)
+
+        // GRANULAR BREAKPOINTS (Optional - using 2-breakpoint pattern)
+        tablet: "p-4",                          // 👈 640px - 16px all sides
+
+        // Auto-generated classes
+        classes: "p-3 sm:p-4",
       },
     },
-    borderRadius: "0.5rem",    // 👈 8px rounded corners
-    gradientFadeHeight: "h-10", // 👈 40px scroll indicator gradient
+    borderRadius: "0.5rem",                     // 👈 8px rounded corners (static)
+    gradientFadeHeight: {
+      // BASE (Required)
+      mobile: "h-10",                           // 👈 375px - 40px gradient (base)
+
+      // GRANULAR BREAKPOINTS (Optional - single breakpoint)
+      tablet: "h-12",                           // 👈 640px - 48px gradient
+
+      // Auto-generated classes
+      classes: "h-10 sm:h-12",
+    },
   },
 
   terminalColors: {
@@ -267,16 +361,43 @@ export const HERO_TOKENS: HeroTokens = {
   },
 
   separator: {
-    vertical: "h-4",           // 👈 16px vertical separator height
-    horizontal: "w-px",        // 👈 1px horizontal separator width
+    vertical: {
+      // BASE (Required)
+      mobile: "h-4",                            // 👈 375px - 16px height (base)
+
+      // GRANULAR BREAKPOINTS (Optional - static across viewports)
+      // Auto-generated classes
+      classes: "h-4",
+    },
+    horizontal: {
+      // BASE (Required)
+      mobile: "w-px",                           // 👈 375px - 1px width (base)
+
+      // GRANULAR BREAKPOINTS (Optional - static across viewports)
+      // Auto-generated classes
+      classes: "w-px",
+    },
   },
 
   codeboxHeight: {
     compact: {
-      mobile: "max-h-[40vh]",      // 👈 55% viewport height on mobile compact
-      tablet: "sm:max-h-[55vh]",   // 👈 55% viewport height on tablet compact
+      // BASE (Required)
+      mobile: "max-h-[40vh]",                   // 👈 375px - 40vh (base)
+
+      // GRANULAR BREAKPOINTS (Optional)
+      tablet: "max-h-[55vh]",                   // 👈 640px - 55vh (more space)
+
+      // Auto-generated classes
+      classes: "max-h-[40vh] sm:max-h-[55vh]",
     },
-    full: "max-h-[40vh]",          // 👈 40% viewport height in full mode
+    full: {
+      // BASE (Required)
+      mobile: "max-h-[40vh]",                   // 👈 375px - 40vh (base)
+
+      // GRANULAR BREAKPOINTS (Optional - static in full mode)
+      // Auto-generated classes
+      classes: "max-h-[40vh]",
+    },
   },
 
   // ============================================================================
@@ -288,14 +409,32 @@ export const HERO_TOKENS: HeroTokens = {
   logo: {
     terminal: {
       container: {
-        // Logo container sizing - scales with terminal text
-        classes: "w-8 h-4 xs:w-12 xs:h-7 xsm:w-14 xsm:h-8 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14",
-        // 👈 40×24px → 48×28px → 56×32px → 64×40px → 80×48px → 96×56px
+        // BASE (Required)
+        mobile: "w-8 h-4",                      // 👈 375px - 32×16px (base)
+
+        // GRANULAR BREAKPOINTS (Optional - granular sizing)
+        smallMobile: "w-8 h-4",                 // 👈 360px - 32×16px
+        largeMobile: "w-12 h-7",                // 👈 414px - 48×28px
+        smallTablet: "w-14 h-8",                // 👈 540px - 56×32px
+        tablet: "w-16 h-10",                    // 👈 640px - 64×40px
+        largeTablet: "w-20 h-12",               // 👈 768px - 80×48px
+        smallDesktop: "w-24 h-14",              // 👈 1024px - 96×56px
+
+        // Auto-generated classes
+        classes: "w-8 h-4 min-[414px]:w-12 min-[414px]:h-7 min-[540px]:w-14 min-[540px]:h-8 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14",
       },
       text: {
-        // Fallback "LOGO" text sizing
-        classes: "text-[10px] xs:text-xs xsm:text-sm sm:text-base md:text-lg",
-        // 👈 10px → 12px → 14px → 16px → 18px
+        // BASE (Required)
+        mobile: "text-[10px]",                  // 👈 375px - 10px (base)
+
+        // GRANULAR BREAKPOINTS (Optional - granular sizing)
+        largeMobile: "text-xs",                 // 👈 414px - 12px
+        smallTablet: "text-sm",                 // 👈 540px - 14px
+        tablet: "text-base",                    // 👈 640px - 16px
+        largeTablet: "text-lg",                 // 👈 768px - 18px
+
+        // Auto-generated classes
+        classes: "text-[10px] min-[414px]:text-xs min-[540px]:text-sm sm:text-base md:text-lg",
       },
     },
   },
@@ -308,22 +447,47 @@ export const HERO_TOKENS: HeroTokens = {
 
   terminalText: {
     prompt: {
-      // Identity line (@portfolio, name) - responsive across all breakpoints
-      // Increased by ~20% for better visibility
-      classes: "text-xl xs:text-xl xsm:text-2xl sm:text-3xl md:text-4xl lg:text-5xl",
-      // 👈 16px → 20px → 20px → 24px → 30px → 36px
+      // BASE (Required)
+      mobile: "text-xl",                        // 👈 375px - 20px (base)
+
+      // GRANULAR BREAKPOINTS (Optional - granular for identity line)
+      smallMobile: "text-xl",                   // 👈 360px - 20px
+      largeMobile: "text-xl",                   // 👈 414px - 20px
+      smallTablet: "text-2xl",                  // 👈 540px - 24px
+      tablet: "text-3xl",                       // 👈 640px - 30px
+      largeTablet: "text-4xl",                  // 👈 768px - 36px
+      smallDesktop: "text-5xl",                 // 👈 1024px - 48px
+
+      // Auto-generated classes
+      classes: "text-xl min-[540px]:text-2xl sm:text-3xl md:text-4xl lg:text-5xl",
     },
     title: {
-      // Role and rotating titles - responsive across all breakpoints
-      classes: "text-xs xs:text-sm xsm:text-base sm:text-lg md:text-0.5xl lg:text-1.75xl",
-      // 👈 14px → 16px → 16px → 18px → 20px → 24px
+      // BASE (Required)
+      mobile: "text-xs",                        // 👈 375px - 12px (base)
+
+      // GRANULAR BREAKPOINTS (Optional - granular for title)
+      smallMobile: "text-xs",                   // 👈 360px - 12px
+      largeMobile: "text-sm",                   // 👈 414px - 14px
+      smallTablet: "text-base",                 // 👈 540px - 16px
+      tablet: "text-lg",                        // 👈 640px - 18px
+      largeTablet: "text-xl",                   // 👈 768px - 20px
+      smallDesktop: "text-2xl",                 // 👈 1024px - 24px
+
+      // Auto-generated classes
+      classes: "text-xs min-[414px]:text-sm min-[540px]:text-base sm:text-lg md:text-xl lg:text-2xl",
     },
   },
 
   codeText: {
-    mobile: "text-[12px]",            // 👈 13px code text on small mobile
-    midMobile: "xs:text-base", // 👈 16px at 375px+
-    tablet: "sm:text-lg",             // 👈 18px at 640px+
+    // BASE (Required)
+    mobile: "text-[12px]",                      // 👈 375px - 12px (base)
+
+    // GRANULAR BREAKPOINTS (Optional)
+    largeMobile: "text-sm",                     // 👈 414px - 14px
+    tablet: "text-base",                        // 👈 640px - 16px
+
+    // Auto-generated classes
+    classes: "text-[12px] min-[414px]:text-sm sm:text-base",
   },
 
   // ============================================================================

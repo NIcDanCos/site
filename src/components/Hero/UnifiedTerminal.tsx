@@ -67,7 +67,7 @@ export const UnifiedTerminal = ({
     <div
       className="relative terminal-box-3d"
       style={{
-        borderRadius: '0.5rem',
+        borderRadius: HERO_TOKENS.terminal.borderRadius,
       }}
     >
       {/* Unified Terminal Header */}
@@ -113,7 +113,7 @@ export const UnifiedTerminal = ({
         {/* Main Scrollable Content */}
         <div
           ref={scrollRef}
-          className={`scrollable-code terminal-content-inset bg-card/50 backdrop-blur-sm border-l border-r border-border py-8 sm:py-12 px-4 sm:px-8 text-left w-full ${computedMaxHeight} overflow-y-auto flex-1`}
+          className={`scrollable-code terminal-content-inset bg-card/50 backdrop-blur-sm border-l border-r border-border ${HERO_TOKENS.terminal.content.padding.mobile} ${HERO_TOKENS.terminal.content.padding.tablet} text-left w-full ${computedMaxHeight} overflow-y-auto flex-1`}
         >
           {children}
         </div>

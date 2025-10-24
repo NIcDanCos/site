@@ -9,14 +9,15 @@
  * - Container max-widths at all breakpoints
  * - Viewport calculations for full-height layouts
  * - Z-index layering system
- * - Component sizing standards
- * - Grid and column systems
+ * - Component sizing standards (static values)
+ * - Grid and column systems (responsive with ExtendedResponsiveValue)
  *
  * HOW TO ADJUST:
- * - maxWidths: Control content container widths
- * - zIndex: Manage stacking order of overlapping elements
- * - componentSizes: Standard sizes for UI components
- * - grid: Configure grid layout patterns
+ * - maxWidths: Control content container widths (static)
+ * - zIndex: Manage stacking order of overlapping elements (static)
+ * - componentSizes: Standard sizes for UI components (static)
+ * - grid.columns: Configure responsive column counts (uses ExtendedResponsiveValue)
+ * - grid.gap: Configure gap sizes (static)
  *
  * USAGE EXAMPLES:
  * import { LAYOUT_SYSTEM } from '@/types/layout/layout-system';
@@ -29,7 +30,12 @@
  *
  * // Component sizes:
  * className={LAYOUT_SYSTEM.componentSizes.button.height.md}
+ *
+ * // Responsive grid columns:
+ * style={{ gridTemplateColumns: `repeat(${LAYOUT_SYSTEM.grid.columns.mobile}, 1fr)` }}
  */
+
+import { ExtendedResponsiveValue } from './responsive';
 
 export interface LayoutSystemTokens {
   // ============================================================================
@@ -157,14 +163,13 @@ export interface LayoutSystemTokens {
 
   /** Grid layout configurations */
   grid: {
-    /** Column counts at different breakpoints */
-    columns: {
-      mobile: number;          // Columns on mobile (default: 4)
-      tablet: number;          // Columns on tablet (default: 8)
-      desktop: number;         // Columns on desktop (default: 12)
-    };
+    /**
+     * Responsive column counts using ExtendedResponsiveValue
+     * Typically uses 3 breakpoints (mobile/tablet/desktop), but can add more if needed
+     */
+    columns: ExtendedResponsiveValue<number>;
 
-    /** Grid gap sizes */
+    /** Grid gap sizes (static - no responsive behavior needed) */
     gap: {
       tight: string;           // Tight gap (e.g., gap-2)
       normal: string;          // Normal gap (e.g., gap-4)
@@ -314,16 +319,23 @@ export const LAYOUT_SYSTEM: LayoutSystemTokens = {
 
   grid: {
     columns: {
-      mobile: 4,       // 👈 4 columns on mobile
-      tablet: 8,       // 👈 8 columns on tablet
-      desktop: 12,     // 👈 12 columns on desktop
+      // BASE (Required)
+      mobile: 4,                     // 👈 375px - 4 columns (base)
+
+      // OPTIONAL BREAKPOINTS (use 3-breakpoint pattern for grid)
+      tablet: 8,                     // 👈 640px - 8 columns
+      smallDesktop: 12,              // 👈 1024px - 12 columns
+      desktop: 12,                   // 👈 1280px - 12 columns (maintain)
+
+      // Auto-generated classes for grid-cols
+      classes: 'grid-cols-4 sm:grid-cols-8 lg:grid-cols-12',
     },
 
     gap: {
-      tight: 'gap-2',     // 👈 8px gap
-      normal: 'gap-4',    // 👈 16px gap
-      relaxed: 'gap-6',   // 👈 24px gap
-      loose: 'gap-8',     // 👈 32px gap
+      tight: 'gap-2',                // 👈 8px gap (static)
+      normal: 'gap-4',               // 👈 16px gap (static)
+      relaxed: 'gap-6',              // 👈 24px gap (static)
+      loose: 'gap-8',                // 👈 32px gap (static)
     },
   },
 

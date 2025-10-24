@@ -27,7 +27,7 @@ export const UnifiedTerminalActions = ({
   onSayHello,
 }: UnifiedTerminalActionsProps) => {
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-stretch w-full">
+    <div className={`flex flex-col sm:flex-row justify-center items-stretch w-full ${HERO_TOKENS.terminal.footer.padding.mobile} ${HERO_TOKENS.terminal.footer.padding.tablet}`}>
       {/* View Work Button - Always visible */}
       <div className="flex-1 flex items-stretch">
         <button

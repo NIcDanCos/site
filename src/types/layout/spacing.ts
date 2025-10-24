@@ -31,12 +31,16 @@
  * className={SPACING.scale.px['4']}  // 16px padding left+right
  */
 
-export interface ResponsiveSpacing {
-  mobile: string;      // Spacing for mobile (< 640px)
-  tablet: string;      // Spacing for tablet (≥ 640px)
-  desktop: string;     // Spacing for desktop (≥ 1024px)
-  classes: string;     // Combined Tailwind classes
-}
+import { ExtendedResponsiveValue } from './responsive';
+
+/**
+ * Responsive spacing value with optional breakpoint overrides.
+ * Uses ExtendedResponsiveValue for maximum flexibility.
+ *
+ * Most spacing patterns use 3 breakpoints (mobile, tablet, desktop),
+ * but you can add more granular control when needed.
+ */
+export interface ResponsiveSpacing extends ExtendedResponsiveValue<string> {}
 
 export interface SpacingTokens {
   // ============================================================================

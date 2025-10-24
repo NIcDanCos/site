@@ -31,12 +31,16 @@
  * style={{ fontSize: TYPOGRAPHY.scale.xl }}
  */
 
-export interface ResponsiveTextSize {
-  mobile: string;      // Font size for mobile (< 640px)
-  tablet: string;      // Font size for tablet (≥ 640px)
-  desktop: string;     // Font size for desktop (≥ 1024px)
-  classes: string;     // Combined Tailwind classes for convenience
-}
+import { ExtendedResponsiveValue } from './responsive';
+
+/**
+ * Responsive text size value with optional breakpoint overrides.
+ * Uses ExtendedResponsiveValue for maximum flexibility.
+ *
+ * Most typography patterns use 3 breakpoints (mobile, tablet, desktop),
+ * but you can add more granular control when needed for specific components.
+ */
+export interface ResponsiveTextSize extends ExtendedResponsiveValue<string> {}
 
 export interface TypographyTokens {
   // ============================================================================

@@ -50,9 +50,9 @@ export const UnifiedTerminalHeader = ({
   rotationInterval = 9000,
 }: UnifiedTerminalHeaderProps) => {
   return (
-    <div className="font-mono overflow-hidden mt-4 mb-4 ml-4 mr-4">
+    <div className={`font-mono overflow-hidden ${HERO_TOKENS.terminal.header.padding.mobile} ${HERO_TOKENS.terminal.header.padding.tablet}`}>
       {/* Main Header Row */}
-      <div className="flex items-stretch gap-3">
+      <div className={`flex items-stretch ${HERO_TOKENS.terminal.header.elementGap}`}>
         {/* Circular Logo - Smaller, spans both lines */}
         <div className="flex items-center flex-shrink-0">
           <div
