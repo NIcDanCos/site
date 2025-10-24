@@ -37,7 +37,7 @@ const Hero = ({ layoutMode = "compact" }: HeroProps) => {
     layoutMode === "compact" ? "min-h-screen" : "h-screen";
 
   return (
-    <div className={`relative flex items-center justify-center overflow-hidden ${heightClass} pt-16 md:pt-20 lg:pt-24 pb-8`}>
+    <div className={`relative flex ${HERO_TOKENS.hero.alignment.mobile} ${HERO_TOKENS.hero.alignment.tablet} justify-center overflow-hidden ${heightClass} ${HERO_TOKENS.hero.topSpacing.smallMobile} ${HERO_TOKENS.hero.topSpacing.mobile} ${HERO_TOKENS.hero.topSpacing.tablet} ${HERO_TOKENS.hero.topSpacing.desktop} pb-8`}>
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-primary" />
       <div className="absolute inset-0 bg-gradient-glow animate-glow-pulse" />

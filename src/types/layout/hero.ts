@@ -42,10 +42,15 @@ export interface HeroTokens {
 
   /** Hero section spacing */
   hero: {
+    alignment: {
+      mobile: string;      // Vertical alignment < 540px (e.g., "items-start")
+      tablet: string;      // Vertical alignment ≥ 540px (e.g., "min-[540px]:items-center")
+    };
     topSpacing: {
-      mobile: string;      // Top margin on mobile < 640px (e.g., "mt-24")
-      tablet: string;      // Top margin on tablet ≥ 640px (e.g., "sm:mt-28")
-      desktop: string;     // Top margin on desktop ≥ 1024px (e.g., "lg:mt-32")
+      smallMobile: string; // Top spacing on small mobile < 540px (e.g., "pt-12")
+      mobile: string;      // Top spacing on mobile 540px-640px (e.g., "min-[540px]:pt-16")
+      tablet: string;      // Top spacing on tablet ≥ 768px (e.g., "md:pt-20")
+      desktop: string;     // Top spacing on desktop ≥ 1024px (e.g., "lg:pt-24")
     };
     contentPadding: string; // Horizontal padding (e.g., "px-6")
   };
@@ -182,16 +187,22 @@ export const HERO_TOKENS: HeroTokens = {
   // ============================================================================
   // HERO SECTION SPACING
   // ============================================================================
-  // Controls the space above the hero content (pushes it down from navbar)
-  // Tip: Adjust to center hero content vertically on screen
+  // Controls the vertical alignment and spacing of hero content
+  // < 540px: Top-aligned with minimal spacing for mobile
+  // ≥ 540px: Vertically centered for tablet/desktop
 
   hero: {
-    topSpacing: {
-      mobile: "mt-20",         // 👈 96px on mobile (< 640px)
-      tablet: "sm:mt-28",      // 👈 112px on tablet (≥ 640px)
-      desktop: "lg:mt-40",     // 👈 128px on desktop (≥ 1024px)
+    alignment: {
+      mobile: "items-start",                  // 👈 Top-aligned on mobile (< 540px)
+      tablet: "min-[540px]:items-center",     // 👈 Centered at 540px+
     },
-    contentPadding: "px-6",    // 👈 24px horizontal padding
+    topSpacing: {
+      smallMobile: "pt-10",                   // small mobile (< 540px) - reduced for top-alignment
+      mobile: "min-[540px]:pt-28",            // 540px+ (centered layout)
+      tablet: "md:pt-32",                     // tablet (≥ 768px)
+      desktop: "lg:pt-40",                    // desktop (≥ 1024px)
+    },
+    contentPadding: "px-6",                   // 👈 24px horizontal padding
   },
 
   // ============================================================================
@@ -299,12 +310,12 @@ export const HERO_TOKENS: HeroTokens = {
     prompt: {
       // Identity line (@portfolio, name) - responsive across all breakpoints
       // Increased by ~20% for better visibility
-      classes: "text-base xs:text-xl xsm:text-xl sm:text-2xl md:text-3xl lg:text-4xl",
+      classes: "text-xl xs:text-xl xsm:text-2xl sm:text-3xl md:text-4xl lg:text-5xl",
       // 👈 16px → 20px → 20px → 24px → 30px → 36px
     },
     title: {
       // Role and rotating titles - responsive across all breakpoints
-      classes: "text-xs xs:text-sm xsm:text-base sm:text-lg md:text-0.5xl lg:text-1.5xl",
+      classes: "text-xs xs:text-sm xsm:text-base sm:text-lg md:text-0.5xl lg:text-1.75xl",
       // 👈 14px → 16px → 16px → 18px → 20px → 24px
     },
   },
