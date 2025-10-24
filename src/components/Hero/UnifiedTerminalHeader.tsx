@@ -3,34 +3,37 @@
  * Next-generation terminal header that replaces traditional navbar
  *
  * Features:
- * - Smaller circular logo spanning both text lines (3rem for better balance)
+ * - Single unified pill with minimal border containing logo, location text, and pin icon
  * - Identity line with username and portfolio path
- * - Static role and location
+ * - Static logo, static Dubai text, animated pin icon
+ * - Pin has combined pulse + grow effect (fades and scales simultaneously)
  * - Animated rotating value propositions
- * - Compact location badge with pin icon (tight spacing at ≥540px)
+ * - All elements stacked vertically in one container
  * - Responsive layout adapting to screen size
- * - Margins for breathing room
  * - Designed for sticky behavior on mobile/tablet
  *
- * Layout:
- * Desktop/Tablet (≥540px):
- * [Logo] [Text Lines]          [📍 Dubai]  (compact badge)
- *        > AI Facilitator/...
+ * Layout (All Screen Sizes):
+ * [Text Lines]                ┌─────────┐
+ * > AI Facilitator/...        │  [Logo] │
+ *                              │  ─────  │  ← Divider
+ *                              │ 📍Dubai │  ← Pin: Pulse + Grow
+ *                              └─────────┘
  *
- * Mobile (<540px):
- * [Logo] [Text Lines]
- *        > AI Facilitator/...
- * [📍 Dubai - Full Width]     (standard rounded pill)
+ * Layout Elements:
+ * - Left: Name and rotating titles (text lines)
+ * - Right: Unified pill containing:
+ *   - Logo (rectangular)
+ *   - Thin divider line
+ *   - Pin icon (pulse + grow animation) + Dubai text (same line)
  *
- * Breakpoint Strategy:
- * - Mobile (<540px): Dubai pill below header, full width, MapPin icon
- * - Small Tablet (≥540px): Compact pin badge on right side - tight spacing
- * - Tablet (≥640px): Enhanced spacing with compact badge
- * - Desktop (≥680px): Full layout with optimal spacing and compact badge
+ * Responsive Adjustments:
+ * - Logo size scales from w-8 h-6 (mobile) to w-14 h-8 (tablet+)
+ * - Consistent pill layout across all screen sizes
  */
 
 import { MapPin } from "lucide-react";
 import { AnimatedRotatingTitle } from './AnimatedRotatingTitle';
+import { Logo } from '../Logo';
 import { HERO_TOKENS } from '@/types/layout/hero';
 
 interface UnifiedTerminalHeaderProps {
@@ -52,28 +55,9 @@ export const UnifiedTerminalHeader = ({
   return (
     <div className={`font-mono overflow-hidden ${HERO_TOKENS.terminal.header.padding.mobile} ${HERO_TOKENS.terminal.header.padding.tablet}`}>
       {/* Main Header Row */}
-      <div className={`flex items-stretch ${HERO_TOKENS.terminal.header.elementGap}`}>
-        {/* Circular Logo - Smaller, spans both lines */}
-        <div className="flex items-center flex-shrink-0">
-          <div
-            className="rounded-full overflow-hidden border-2 border-primary/30 bg-card flex items-center justify-center"
-            style={{
-              // 3rem for better balance
-              width: '3rem',
-              height: '3rem',
-              minWidth: '3rem',
-              minHeight: '3rem'
-            }}
-          >
-            <img
-              src="/assets/logo/nic-mob-gradient.png"
-              alt="Logo"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
+      <div className={`flex items-start justify-between ${HERO_TOKENS.terminal.header.elementGap}`}>
 
-        {/* Text Content - Two lines */}
+        {/* Left: Text Content - Two lines */}
         <div className="flex-1 flex flex-col gap-1 min-w-0">
           {/* Line 1: Identity */}
           <div className="flex items-center gap-1.5 min-w-0">
@@ -101,24 +85,35 @@ export const UnifiedTerminalHeader = ({
           </div>
         </div>
 
-        {/* Right Side: Location Badge - Compact pin badge at ≥540px, hidden below */}
-        <div className="hidden tablet-xs:flex items-center flex-shrink-0">
-          <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 bg-primary/5 border border-primary/30 animate-pulse-border rounded-md">
-            <MapPin className="w-4 h-4 text-primary/70" />
-            <span className="text-primary/80 font-bold text-sm tracking-wide">
+        {/* Right: Unified Pill - Logo, Dubai, Pin all stacked - All screen sizes */}
+        <div className="flex flex-col items-center justify-center gap-1 px-1 py-1 rounded-md border border-primary/15 bg-card/80 flex-shrink-0">
+          {/* Logo */}
+          <Logo
+            size="terminal"
+            imageSrc="/assets/logo/nic-pic.png"
+            alt="Logo"
+            objectFit="contain"
+            rounded="none"
+            backgroundColor="bg-card/80"
+            className="w-8 h-6 sm:w-14 sm:h-8 md:w-14 md:h-8"
+          />
+
+          {/* Thin Divider Line */}
+          <div className="w-full h-px bg-primary/10" />
+
+          {/* Dubai Text + Pin - Same Line */}
+          <div className="flex items-center justify-center gap-1">
+            <MapPin
+              className="w-3 h-3 text-primary animate-pulse"
+              style={{
+                animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite, pinGrow 2s ease-in-out infinite',
+                transformOrigin: 'center'
+              }}
+            />
+            <span className="text-primary font-bold text-xs tracking-wide">
               {location}
             </span>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile Location Pill - Full width below header on screens <540px */}
-      <div className="flex tablet-xs:hidden mt-3">
-        <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-primary/5 border border-primary/30 animate-pulse-border w-full">
-          <MapPin className="w-4 h-4 text-primary/70" />
-          <span className="text-primary/80 font-bold text-sm tracking-wide">
-            {location}
-          </span>
         </div>
       </div>
     </div>

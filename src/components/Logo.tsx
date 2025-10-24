@@ -8,6 +8,7 @@
  * - Responsive sizing based on context
  * - Configurable rounded corners (centralized)
  * - Configurable image fit behavior (contain, cover, etc.)
+ * - Configurable background color for transparent images
  * - Uses centralized design tokens for easy customization
  * - Graceful fallback to placeholder if no image provided
  *
@@ -16,6 +17,7 @@
  * - Pass the path via imageSrc prop: imageSrc="/assets/logo/your-logo.svg"
  * - Customize border radius: rounded="md" (sm, md, lg, xl, 2xl, full, none)
  * - Customize image fit: objectFit="contain" (contain, cover, fill, scale-down, none)
+ * - For transparent images: backgroundColor="bg-card/80" to match parent background
  *
  * Customization:
  * - To adjust terminal logo size: Edit src/types/layout/hero.ts -> logo.terminal.container
@@ -38,6 +40,12 @@ interface LogoProps {
   alt?: string;
   rounded?: RoundedSize;
   objectFit?: ObjectFit;
+  /**
+   * Background color for the logo container
+   * Useful when image has transparency and should match parent background
+   * Pass Tailwind background classes (e.g., "bg-card/80", "bg-transparent")
+   */
+  backgroundColor?: string;
 }
 
 export const Logo = ({
@@ -46,7 +54,8 @@ export const Logo = ({
   imageSrc,
   alt = "Logo",
   rounded = "md",
-  objectFit = "contain"
+  objectFit = "contain",
+  backgroundColor
 }: LogoProps) => {
   const getSizeClasses = () => {
     switch (size) {
@@ -113,7 +122,7 @@ export const Logo = ({
   // If image source is provided, render the image
   if (imageSrc) {
     return (
-      <div className={`${getSizeClasses()} ${getRoundedClasses()} overflow-hidden flex-shrink-0 ${className}`}>
+      <div className={`${getSizeClasses()} ${getRoundedClasses()} overflow-hidden flex-shrink-0 ${backgroundColor || ''} ${className}`}>
         <img
           src={imageSrc}
           alt={alt}

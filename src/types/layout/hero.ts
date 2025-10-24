@@ -295,7 +295,7 @@ export const HERO_TOKENS: HeroTokens = {
     header: {
       padding: {
         // BASE (Required)
-        mobile: "p-3",                          // 👈 375px - 12px all sides (base)
+        mobile: "p-0",                          // 👈 375px - 12px all sides (base)
 
         // GRANULAR BREAKPOINTS (Optional - using 2-breakpoint pattern)
         tablet: "p-4",                          // 👈 640px - 16px all sides

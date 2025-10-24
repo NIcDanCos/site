@@ -58,7 +58,7 @@ const Hero = ({ layoutMode = "compact" }: HeroProps) => {
           onSayHello={() => setShowContactModal(true)}
           layoutMode={layoutMode}
         >
-          <pre className={`${HERO_TOKENS.codeText.mobile} ${HERO_TOKENS.codeText.midMobile} ${HERO_TOKENS.codeText.tablet} break-words whitespace-pre-wrap`}>
+          <pre className={`${HERO_TOKENS.codeText.classes} break-words whitespace-pre-wrap`}>
             <code className="break-words">
               <PackageHeader
                 name={packageData.name}

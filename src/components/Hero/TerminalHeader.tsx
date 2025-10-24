@@ -80,11 +80,12 @@ export const TerminalHeader = ({
           <div className="flex items-center gap-2">
             <Logo
               size="terminal"
-              imageSrc="/assets/logo/nic-mob-gradient.png"
+              imageSrc="/assets/logo/nic-pic.png"
               objectFit="cover"
               rounded="sm"
               alt="Site Logo"
               className="border border-primary/20"
+              backgroundColor="bg-card/80"
             />
             <span className={`text-foreground font-bold ${HERO_TOKENS.terminalText.prompt.classes}`}>
               {name}
